@@ -10,11 +10,21 @@ class Login extends React.Component {
       redirect: false,
     };
     this.handleChangeLogin = this.handleChangeLogin.bind(this);
-    this.handleClickLogin = this.handleClickLogin.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClickLogin() {
+  handleSubmit(event) {
+    event.preventDefault();
     this.setState({ redirect: true });
+  }
+
+  inputValidation() {
+    const { email, senha } = this.state;
+    const MIN_LENGTH = 6;
+    if (senha.length >= MIN_LENGTH && email.includes('@') && email.includes('.com')) {
+      return true;
+    }
+    return false;
   }
 
   handleChangeLogin({ target: { name, value } }) {
@@ -24,10 +34,9 @@ class Login extends React.Component {
   }
 
   render() {
-    const MIN_LENGTH = 6;
     const { email, senha, redirect } = this.state;
     return (
-      <>
+      <form onSubmit={ this.handleSubmit }>
         <input
           type="email"
           name="email"
@@ -46,16 +55,10 @@ class Login extends React.Component {
           onChange={ this.handleChangeLogin }
           value={ senha }
         />
-        {senha.length < MIN_LENGTH ? <button type="button" disabled>Entrar</button> : (
-          <button
-            type="button"
-            onClick={ this.handleClickLogin }
-          >
-            Entrar
-          </button>
-        )}
+        { this.inputValidation() ? <button type="submit">Entrar</button> : (
+          <button type="submit" disabled> Entrar</button>)}
         { redirect && <Redirect to="/carteira" /> }
-      </>
+      </form>
     );
   }
 }

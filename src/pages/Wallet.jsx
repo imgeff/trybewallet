@@ -2,17 +2,42 @@ import React from 'react';
 import Header from '../components/Header';
 
 class Wallet extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      valor: '',
+      descricao: '',
+      moeda: 'BRL',
+      metodo: '',
+      tag: '',
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeWallet = this.handleChangeWallet.bind(this);
+  }
+
+  handleChangeWallet({ target: { name, value } }) {
+    this.setState({ [name]: value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('submit');
+  }
+
   render() {
+    const { valor, descricao, moeda, metodo, tag } = this.state;
     return (
       <>
         <Header />
         <form onSubmit={ this.handleSubmit }>
           <input
             type="text"
-            name="despesa"
+            name="valor"
             className="input-wallet"
             placeholder="Valor da Despesa"
             data-testid="value-input"
+            value={ valor }
+            onChange={ this.handleChangeWallet }
           />
           <input
             type="text"
@@ -20,26 +45,44 @@ class Wallet extends React.Component {
             className="input-wallet"
             placeholder="Descrição da Despesa"
             data-testid="description-input"
+            value={ descricao }
+            onChange={ this.handleChangeWallet }
           />
           <label htmlFor="moedas">
             Moeda:
-            <select name="moeda" data-testid="currency-input" id="moedas">
+            <select
+              name="moeda"
+              data-testid="currency-input"
+              id="moedas"
+              value={ moeda }
+              onChange={ this.handleChangeWallet }
+            >
               <option>BRL</option>
             </select>
           </label>
           <label htmlFor="payment">
             Forma de Pagamento:
-            <select name="payment" id="payment" data-testid="method-input">
-              <option>Cartão de Crédito</option>
-              <option>Cartão de Débito</option>
+            <select
+              name="metodo"
+              id="payment"
+              data-testid="method-input"
+              value={ metodo }
+              onChange={ this.handleChangeWallet }
+            >
               <option>Dinheiro</option>
-              <option>Boleto</option>
-              <option>Pix</option>
+              <option>Cartão de crédito</option>
+              <option>Cartão de débito</option>
             </select>
           </label>
           <label htmlFor="tag">
             Tag:
-            <select name="tag" id="tag" data-testid="tag-input">
+            <select
+              name="tag"
+              id="tag"
+              data-testid="tag-input"
+              value={ tag }
+              onChange={ this.handleChangeWallet }
+            >
               <option>Alimentação</option>
               <option>Lazer</option>
               <option>Trabalho</option>
@@ -48,7 +91,7 @@ class Wallet extends React.Component {
               <option>Saúde</option>
             </select>
           </label>
-          <button type="button">Adicionar despesa</button>
+          <button type="submit">Adicionar despesa</button>
         </form>
       </>
     );

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAPICoin } from '../actions';
+import fetchApi from '../services/fetchApi';
 import Header from '../components/Header';
 
 class Wallet extends React.Component {
@@ -9,14 +10,23 @@ class Wallet extends React.Component {
     super();
     this.state = {
       id: 0,
-      valor: '',
-      descricao: '',
-      moeda: 'BRL',
-      metodo: 'Dinheiro',
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
       tag: 'Alimentação',
+      exchangeRates: {},
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeWallet = this.handleChangeWallet.bind(this);
+  }
+
+  componentDidMount() {
+    fetchApi()
+      .then((data) => {
+        delete data.USDT;
+        this.setState({ exchangeRates: data });
+      });
   }
 
   handleChangeWallet({ target: { name, value } }) {
@@ -30,51 +40,61 @@ class Wallet extends React.Component {
       id: prevState.id + 1,
     }));
     dispatchExpense(this.state);
+    this.setState({
+      value: '',
+      description: '',
+      currency: '',
+      method: '',
+      tag: '',
+    });
   }
 
   render() {
-    const { valor, descricao, moeda, metodo, tag } = this.state;
+    const { value, description, currency, method, tag, exchangeRates } = this.state;
+    const listOfCurrencyCode = Object.keys(exchangeRates);
     return (
       <>
         <Header />
         <form onSubmit={ this.handleSubmit }>
           <input
             type="text"
-            name="valor"
+            name="value"
             className="input-wallet"
             placeholder="Valor da Despesa"
             data-testid="value-input"
-            value={ valor }
+            value={ value }
             onChange={ this.handleChangeWallet }
           />
           <input
             type="text"
-            name="descricao"
+            name="description"
             className="input-wallet"
             placeholder="Descrição da Despesa"
             data-testid="description-input"
-            value={ descricao }
+            value={ description }
             onChange={ this.handleChangeWallet }
           />
           <label htmlFor="moedas">
             Moeda:
             <select
-              name="moeda"
+              name="currency"
               data-testid="currency-input"
               id="moedas"
-              value={ moeda }
+              value={ currency }
               onChange={ this.handleChangeWallet }
             >
-              <option>BRL</option>
+              {listOfCurrencyCode.map((code) => (
+                <option data-testid={ code } key={ code }>{code}</option>
+              ))}
             </select>
           </label>
           <label htmlFor="payment">
             Forma de Pagamento:
             <select
-              name="metodo"
+              name="method"
               id="payment"
               data-testid="method-input"
-              value={ metodo }
+              value={ method }
               onChange={ this.handleChangeWallet }
             >
               <option>Dinheiro</option>
@@ -95,7 +115,6 @@ class Wallet extends React.Component {
               <option>Lazer</option>
               <option>Trabalho</option>
               <option>Transporte</option>
-              <option>Trabalho</option>
               <option>Saúde</option>
             </select>
           </label>

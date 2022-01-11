@@ -1,15 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { dataExpense } from '../actions';
 import Header from '../components/Header';
 
 class Wallet extends React.Component {
   constructor() {
     super();
     this.state = {
+      id: 0,
       valor: '',
       descricao: '',
       moeda: 'BRL',
-      metodo: '',
-      tag: '',
+      metodo: 'Dinheiro',
+      tag: 'Alimentação',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeWallet = this.handleChangeWallet.bind(this);
@@ -20,8 +24,12 @@ class Wallet extends React.Component {
   }
 
   handleSubmit(event) {
+    const { dispatchExpense } = this.props;
     event.preventDefault();
-    console.log('submit');
+    this.setState((prevState) => ({
+      id: prevState.id + 1,
+    }));
+    dispatchExpense(this.state);
   }
 
   render() {
@@ -98,4 +106,12 @@ class Wallet extends React.Component {
   }
 }
 
-export default Wallet;
+const mapDispatchToProps = (dispatch) => ({
+  dispatchExpense: (expense) => dispatch(dataExpense(expense)),
+});
+
+Wallet.propTypes = {
+  dispatchExpense: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(Wallet);

@@ -1,3 +1,4 @@
+import fetchApi from '../services/fetchApi';
 // ============== ACTION TYPES ===============
 export const DATA_LOGIN = 'DATA_LOGIN';
 export const DATA_EXPENSE = 'DATA_EXPENSE';
@@ -12,3 +13,8 @@ export const dataExpense = (expense) => ({
   type: DATA_EXPENSE,
   expense,
 });
+
+export const fetchAPICoin = (expense) => (dispatch) => {
+  fetchApi()
+    .then((data) => dispatch(dataExpense({ ...expense, exchangeRates: data })));
+};

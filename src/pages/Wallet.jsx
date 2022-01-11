@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { dataExpense } from '../actions';
+import { fetchAPICoin } from '../actions';
 import Header from '../components/Header';
 
 class Wallet extends React.Component {
@@ -24,8 +24,8 @@ class Wallet extends React.Component {
   }
 
   handleSubmit(event) {
-    const { dispatchExpense } = this.props;
     event.preventDefault();
+    const { dispatchExpense } = this.props;
     this.setState((prevState) => ({
       id: prevState.id + 1,
     }));
@@ -107,7 +107,7 @@ class Wallet extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchExpense: (expense) => dispatch(dataExpense(expense)),
+  dispatchExpense: (expense) => dispatch(fetchAPICoin(expense)),
 });
 
 Wallet.propTypes = {

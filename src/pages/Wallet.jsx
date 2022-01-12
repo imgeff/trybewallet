@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAPICoin } from '../actions';
+import { fetchAPICoin, sumValue } from '../actions';
 import fetchApi from '../services/fetchApi';
 import Header from '../components/HeaderWallet';
 import TableExpenses from '../components/TableExpenses';
@@ -20,6 +20,7 @@ class Wallet extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeWallet = this.handleChangeWallet.bind(this);
+    this.catchConvertedValueExpense = this.catchConvertedValueExpense.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +46,15 @@ class Wallet extends React.Component {
       value: '',
       description: '',
     });
+    this.catchConvertedValueExpense();
+  }
+
+  catchConvertedValueExpense() {
+    const { dispatchValueExpense } = this.props;
+    const { value, currency, exchangeRates } = this.state;
+    const cambio = Number(exchangeRates[currency].ask);
+    const convertedExpenseValue = Number(value) * cambio;
+    dispatchValueExpense(convertedExpenseValue);
   }
 
   render() {
@@ -126,10 +136,12 @@ class Wallet extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchExpense: (expense) => dispatch(fetchAPICoin(expense)),
+  dispatchValueExpense: (value) => dispatch(sumValue(value)),
 });
 
 Wallet.propTypes = {
   dispatchExpense: PropTypes.func.isRequired,
+  dispatchValueExpense: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Wallet);

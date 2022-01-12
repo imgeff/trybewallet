@@ -14,7 +14,7 @@ class Header extends React.Component {
           <p
             data-testid="total-field"
           >
-            {totalValue.toFixed(2)}
+            {totalValue !== undefined ? totalValue.toFixed(2) : 0}
           </p>
           <p data-testid="header-currency-field">BRL</p>
         </div>

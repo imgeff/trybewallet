@@ -3,7 +3,7 @@ import fetchApi from '../services/fetchApi';
 export const DATA_LOGIN = 'DATA_LOGIN';
 export const DATA_EXPENSE = 'DATA_EXPENSE';
 export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
-export const SUM_VALUE = 'SUM_VALUE';
+export const CALCULATE_VALUE = 'CALCULATE_VALUE';
 // ============== ACTION CREATORS ================
 export const dataLogin = (data) => ({
   type: DATA_LOGIN,
@@ -25,7 +25,8 @@ export const removeExpense = (expense) => ({
   expense,
 });
 
-export const sumValue = (value) => ({
-  type: SUM_VALUE,
+export const calculateValue = (value, operation) => ({
+  type: CALCULATE_VALUE,
   value,
+  operation,
 });

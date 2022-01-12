@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAPICoin, sumValue } from '../actions';
+import { fetchAPICoin, calculateValue } from '../actions';
 import fetchApi from '../services/fetchApi';
 import Header from '../components/HeaderWallet';
 import TableExpenses from '../components/TableExpenses';
@@ -54,7 +54,7 @@ class Wallet extends React.Component {
     const { value, currency, exchangeRates } = this.state;
     const cambio = Number(exchangeRates[currency].ask);
     const convertedExpenseValue = Number(value) * cambio;
-    dispatchValueExpense(convertedExpenseValue);
+    dispatchValueExpense(convertedExpenseValue, '+');
   }
 
   render() {
@@ -136,7 +136,7 @@ class Wallet extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchExpense: (expense) => dispatch(fetchAPICoin(expense)),
-  dispatchValueExpense: (value) => dispatch(sumValue(value)),
+  dispatchValueExpense: (value, operation) => dispatch(calculateValue(value, operation)),
 });
 
 Wallet.propTypes = {

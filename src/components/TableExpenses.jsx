@@ -1,10 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import BodyTable from './subComponents/tableExpenses/BodyTable';
-// import HeaderTable from './subComponents/tableExpenses/HeaderTable';
+import { removeExpense } from '../actions';
 
 class TableExpenses extends React.Component {
+  constructor() {
+    super();
+    this.handleRemoveExpense = this.handleRemoveExpense.bind(this);
+  }
+
+  handleRemoveExpense(expense) {
+    const { removeUserExpense } = this.props;
+    removeUserExpense(expense);
+  }
+
   render() {
     const { userExpenses } = this.props;
     return (
@@ -48,6 +57,15 @@ class TableExpenses extends React.Component {
                   <td>{cambio}</td>
                   <td>{convertValue}</td>
                   <td>Real</td>
+                  <td>
+                    <button
+                      data-testid="delete-btn"
+                      type="button"
+                      onClick={ () => this.handleRemoveExpense(expense) }
+                    >
+                      Excluir
+                    </button>
+                  </td>
                 </tr>
               );
             })}
@@ -62,8 +80,13 @@ const mapStateToProps = (state) => ({
   userExpenses: state.wallet.expenses,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  removeUserExpense: (expense) => dispatch(removeExpense(expense)),
+});
+
 TableExpenses.propTypes = {
   userExpenses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  removeUserExpense: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(TableExpenses);
+export default connect(mapStateToProps, mapDispatchToProps)(TableExpenses);

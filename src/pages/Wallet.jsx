@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAPICoin } from '../actions';
 import fetchApi from '../services/fetchApi';
-import Header from '../components/Header';
-import HeaderTable from '../components/HeaderTable';
+import Header from '../components/HeaderWallet';
+import TableExpenses from '../components/TableExpenses';
 
 class Wallet extends React.Component {
   constructor() {
@@ -44,9 +44,6 @@ class Wallet extends React.Component {
     this.setState({
       value: '',
       description: '',
-      currency: '',
-      method: '',
-      tag: '',
     });
   }
 
@@ -121,9 +118,7 @@ class Wallet extends React.Component {
           </label>
           <button type="submit">Adicionar despesa</button>
         </form>
-        <section>
-          <HeaderTable />
-        </section>
+        <TableExpenses />
       </>
     );
   }

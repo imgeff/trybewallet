@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAPICoin, calculateValue } from '../actions';
 import fetchApi from '../services/fetchApi';
-import Header from '../components/HeaderWallet';
+import HeaderWallet from '../components/HeaderWallet';
 import TableExpenses from '../components/TableExpenses';
 
 class Wallet extends React.Component {
@@ -62,7 +62,7 @@ class Wallet extends React.Component {
     const listOfCurrencyCode = Object.keys(exchangeRates);
     return (
       <>
-        <Header />
+        <HeaderWallet />
         <form onSubmit={ this.handleSubmit }>
           <input
             type="text"

@@ -16,17 +16,7 @@ class HeaderWallet extends React.Component {
       const cambio = exchangeRates[currency].ask;
       const convertedValue = parseFloat(value) * parseFloat(cambio);
       totalValue += convertedValue;
-      // console.log(totalValue);
     });
-    // const mapValueExpenses = expenses.map((expense) => {
-    //   const { value, currency, exchangeRates } = expense;
-    //   const cambio = exchangeRates[currency].ask;
-    //   const convertedValueExpense = value * cambio;
-    //   return convertedValueExpense;
-    // });
-    // const totalValue = mapValueExpenses.reduce((prevValue, currentValue) => {
-    //   return prevValue + currentValue;
-    // }, 0);
     return totalValue;
   }
 
@@ -56,7 +46,7 @@ const mapStateToProps = (state) => ({
 
 HeaderWallet.propTypes = {
   userEmail: PropTypes.string.isRequired,
-  expenses: PropTypes.number.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps)(HeaderWallet);

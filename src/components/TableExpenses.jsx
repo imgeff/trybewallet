@@ -11,8 +11,10 @@ class TableExpenses extends React.Component {
   }
 
   handleRemoveExpense(expense) {
-    const { removeUserExpense } = this.props;
-    removeUserExpense(expense);
+    const { removeUserExpense, userExpenses } = this.props;
+    const filterExpenses = userExpenses
+      .filter((expenseOriginal) => expenseOriginal !== expense);
+    removeUserExpense(filterExpenses);
     this.catchConvertedValueExpense(expense);
   }
 

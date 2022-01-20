@@ -20,9 +20,9 @@ export const fetchAPICoin = (expense) => (dispatch) => {
     .then((data) => dispatch(dataExpense({ ...expense, exchangeRates: data })));
 };
 
-export const removeExpense = (expense) => ({
+export const removeExpense = (filteredExpenses) => ({
   type: REMOVE_EXPENSE,
-  expense,
+  filteredExpenses,
 });
 
 export const calculateValue = (value, operation) => ({

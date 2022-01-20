@@ -13,8 +13,7 @@ const walletReducer = (state = INITIAL_STATE, action) => {
       expenses: [...state.expenses, { ...action.expense }],
     };
   case REMOVE_EXPENSE:
-    state.expenses.splice(state.expenses.indexOf(action.expense), 1);
-    return { ...state, expenses: [...state.expenses] };
+    return { ...state, expenses: [...action.filteredExpenses] };
   case CALCULATE_VALUE:
     return {
       ...state,

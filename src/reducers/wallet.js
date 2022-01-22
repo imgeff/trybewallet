@@ -1,4 +1,4 @@
-import { DATA_EXPENSE, REMOVE_EXPENSE, CALCULATE_VALUE } from '../actions';
+import { DATA_EXPENSE, REMOVE_EXPENSE, CALCULATE_VALUE, EDIT_EXPENSE } from '../actions';
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
   expenses: [],
@@ -22,6 +22,9 @@ const walletReducer = (state = INITIAL_STATE, action) => {
           : state.totalValue - action.value,
       ),
     };
+  case EDIT_EXPENSE:
+    state.expenses.action.indexExpense = action.expense;
+    return state;
   default:
     return state;
   }

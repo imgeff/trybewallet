@@ -4,7 +4,14 @@ export const DATA_LOGIN = 'DATA_LOGIN';
 export const DATA_EXPENSE = 'DATA_EXPENSE';
 export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
 export const CALCULATE_VALUE = 'CALCULATE_VALUE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 // ============== ACTION CREATORS ================
+export const editExpense = (expense, indexExpense) => ({
+  type: EDIT_EXPENSE,
+  expense,
+  indexExpense,
+});
+
 export const dataLogin = (data) => ({
   type: DATA_LOGIN,
   data,

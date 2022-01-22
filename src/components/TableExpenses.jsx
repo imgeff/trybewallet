@@ -8,6 +8,12 @@ class TableExpenses extends React.Component {
     super();
     this.handleRemoveExpense = this.handleRemoveExpense.bind(this);
     this.catchConvertedValueExpense = this.catchConvertedValueExpense.bind(this);
+    this.catchEditExpense = this.catchEditExpense.bind(this);
+  }
+
+  catchEditExpense(expense) {
+    const { setEditExpense } = this.props;
+    setEditExpense(expense);
   }
 
   handleRemoveExpense(expense) {
@@ -77,6 +83,13 @@ class TableExpenses extends React.Component {
                     >
                       Excluir
                     </button>
+                    <button
+                      data-testid="edit-btn"
+                      type="button"
+                      onClick={ () => this.catchEditExpense(expense) }
+                    >
+                      Editar despesa
+                    </button>
                   </td>
                 </tr>
               );
@@ -101,6 +114,7 @@ TableExpenses.propTypes = {
   userExpenses: PropTypes.arrayOf(PropTypes.object).isRequired,
   removeUserExpense: PropTypes.func.isRequired,
   dispatchValueExpense: PropTypes.func.isRequired,
+  setEditExpense: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableExpenses);

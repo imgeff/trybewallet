@@ -76,7 +76,7 @@ function Wallet(
   const { value, description, currency, method, tag, exchangeRates } = expense;
   const listOfCurrencyCode = Object.keys(exchangeRates);
   const editBTN = (
-    <button type="submit">Editar</button>
+    <button type="submit">Editar despesa</button>
   );
   return (
     <>

@@ -27,7 +27,7 @@ class TableExpenses extends React.Component {
     const { removeUserExpense, userExpenses } = this.props;
     const filterExpenses = userExpenses
       .filter((expenseOriginal) => expenseOriginal !== expense);
-    this.orderExpenses(filterExpenses);
+    // this.orderExpenses(filterExpenses);
     removeUserExpense(filterExpenses);
     this.catchConvertedValueExpense(...userExpenses);
   }
@@ -85,18 +85,18 @@ class TableExpenses extends React.Component {
                   <td>Real</td>
                   <td>
                     <button
+                      data-testid="edit-btn"
+                      type="button"
+                      onClick={ () => this.catchEditExpense(expense) }
+                    >
+                      Editar
+                    </button>
+                    <button
                       data-testid="delete-btn"
                       type="button"
                       onClick={ () => this.handleRemoveExpense(expense) }
                     >
                       Excluir
-                    </button>
-                    <button
-                      data-testid="edit-btn"
-                      type="button"
-                      onClick={ () => this.catchEditExpense(expense) }
-                    >
-                      Editar despesa
                     </button>
                   </td>
                 </tr>

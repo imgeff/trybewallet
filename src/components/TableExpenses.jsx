@@ -6,13 +6,10 @@ import { removeExpense, calculateValue } from '../actions';
 class TableExpenses extends React.Component {
   constructor(props) {
     super(props);
-    // const { userExpenses } = this.props;
-    // this.state = {
-    //   expenses: userExpenses,
-    // };
     this.handleRemoveExpense = this.handleRemoveExpense.bind(this);
     this.catchConvertedValueExpense = this.catchConvertedValueExpense.bind(this);
     this.catchEditExpense = this.catchEditExpense.bind(this);
+    this.orderExpenses = this.orderExpenses.bind(this);
   }
 
   catchEditExpense(expense) {
@@ -20,10 +17,17 @@ class TableExpenses extends React.Component {
     setEditExpense(expense);
   }
 
+  orderExpenses(expensesFiltered) {
+    expensesFiltered.forEach((expense, index) => {
+      expense.id = index;
+    });
+  }
+
   handleRemoveExpense(expense) {
     const { removeUserExpense, userExpenses } = this.props;
     const filterExpenses = userExpenses
       .filter((expenseOriginal) => expenseOriginal !== expense);
+    this.orderExpenses(filterExpenses);
     removeUserExpense(filterExpenses);
     this.catchConvertedValueExpense(...userExpenses);
   }

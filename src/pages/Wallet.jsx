@@ -58,14 +58,12 @@ function Wallet(
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setExpense({ ...expense, id: expense.id + 1 });
     dispatchExpense(expense);
     setExpense({ ...expense, value: '', description: '' });
     catchConvertedValueExpense();
   };
 
   const catchValueExpenses = () => {
-    // const { expenses } = this.props;
     let totalValue = 0;
     expenses.forEach(({ value, currency, exchangeRates }) => {
       const cambio = exchangeRates[currency].ask;

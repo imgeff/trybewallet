@@ -4,8 +4,12 @@ import { connect } from 'react-redux';
 import { removeExpense, calculateValue } from '../actions';
 
 class TableExpenses extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    // const { userExpenses } = this.props;
+    // this.state = {
+    //   expenses: userExpenses,
+    // };
     this.handleRemoveExpense = this.handleRemoveExpense.bind(this);
     this.catchConvertedValueExpense = this.catchConvertedValueExpense.bind(this);
     this.catchEditExpense = this.catchEditExpense.bind(this);
@@ -21,7 +25,7 @@ class TableExpenses extends React.Component {
     const filterExpenses = userExpenses
       .filter((expenseOriginal) => expenseOriginal !== expense);
     removeUserExpense(filterExpenses);
-    this.catchConvertedValueExpense(expense);
+    this.catchConvertedValueExpense(...userExpenses);
   }
 
   catchConvertedValueExpense(expense) {
@@ -101,10 +105,6 @@ class TableExpenses extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  userExpenses: state.wallet.expenses,
-});
-
 const mapDispatchToProps = (dispatch) => ({
   removeUserExpense: (expense) => dispatch(removeExpense(expense)),
   dispatchValueExpense: (value, operation) => dispatch(calculateValue(value, operation)),
@@ -117,4 +117,4 @@ TableExpenses.propTypes = {
   setEditExpense: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableExpenses);
+export default connect(null, mapDispatchToProps)(TableExpenses);

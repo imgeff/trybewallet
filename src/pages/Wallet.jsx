@@ -1,166 +1,168 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAPICoin, calculateValue, editExpense } from '../actions';
 import fetchApi from '../services/fetchApi';
-import HeaderWallet from '../components/HeaderWallet';
 import TableExpenses from '../components/TableExpenses';
 
-class Wallet extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      expense: {
-        id: 0,
-        value: '',
-        description: '',
-        currency: 'USD',
-        method: 'Dinheiro',
-        tag: 'Alimentação',
-        exchangeRates: {},
-      },
-      displayEdit: false,
-      indexExpense: 0,
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeWallet = this.handleChangeWallet.bind(this);
-    this.catchConvertedValueExpense = this.catchConvertedValueExpense.bind(this);
-    this.setEditExpense = this.setEditExpense.bind(this);
-    this.sendExpenseEdited = this.sendExpenseEdited.bind(this);
-  }
+const stateDefault = {
+  id: 0,
+  value: '',
+  description: '',
+  currency: 'USD',
+  method: 'Dinheiro',
+  tag: 'Alimentação',
+  exchangeRates: {},
+};
 
-  componentDidMount() {
+function Wallet(
+  { expenses, dispatchEditExpense, dispatchExpense, dispatchValueExpense, userEmail },
+) {
+  const [expense, setExpense] = useState(stateDefault);
+
+  const [displayEdit, setDisplayEdit] = useState(false);
+  const [indexExpense, setIndexExpense] = useState(0);
+
+  useEffect(() => {
     fetchApi()
       .then((data) => {
         delete data.USDT;
-        this.setState({ expense: { exchangeRates: data } });
+        setExpense({ ...expense, exchangeRates: data });
       });
-  }
+  }, [displayEdit]);
 
-  setEditExpense(editEXP) {
-    const { expenses } = this.props;
-    const { expense } = this.state;
-    const indexEditExpense = expenses.indexOf(editEXP);
-    this.setState({ expense, displayEdit: true, indexExpense: indexEditExpense });
-  }
-
-  sendExpenseEdited() {
-    const { expense, indexExpense } = this.state;
-    const { dispatchEditExpense } = this.props;
-    dispatchEditExpense(expense, indexExpense);
-    this.setState({ displayEdit: false });
-  }
-
-  handleChangeWallet({ target: { name, value } }) {
-    this.setState({ expense: { [name]: value } });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const { dispatchExpense } = this.props;
-    const { expense } = this.state;
-    this.setState((prevState) => ({
-      id: prevState.id + 1,
-    }));
-    dispatchExpense(expense);
-    this.setState({
-      expense: {
-        value: '',
-        description: '',
-      },
-    });
-    this.catchConvertedValueExpense();
-  }
-
-  catchConvertedValueExpense() {
-    const { dispatchValueExpense } = this.props;
-    const { expense: { value, currency, exchangeRates } } = this.state;
+  const catchConvertedValueExpense = () => {
+    const { value, currency, exchangeRates } = expense;
     const cambio = Number(exchangeRates[currency].ask);
     const convertedExpenseValue = Number(value) * cambio;
     dispatchValueExpense(convertedExpenseValue, '+');
-  }
+  };
 
-  render() {
-    const { expense:
-      { value, description, currency, method, tag, exchangeRates }, displayEdit,
-    } = this.state;
-    const listOfCurrencyCode = Object.keys(exchangeRates);
-    const editBTN = (
-      <button type="button" onClick={ this.sendExpenseEdited }>Editar</button>
-    );
-    return (
-      <>
-        <HeaderWallet />
-        <form onSubmit={ this.handleSubmit }>
-          <input
-            type="text"
-            name="value"
-            className="input-wallet"
-            placeholder="Valor da Despesa"
-            data-testid="value-input"
-            value={ value }
-            onChange={ this.handleChangeWallet }
-          />
-          <input
-            type="text"
-            name="description"
-            className="input-wallet"
-            placeholder="Descrição da Despesa"
-            data-testid="description-input"
-            value={ description }
-            onChange={ this.handleChangeWallet }
-          />
-          <label htmlFor="moedas">
-            Moeda:
-            <select
-              name="currency"
-              data-testid="currency-input"
-              id="moedas"
-              value={ currency }
-              onChange={ this.handleChangeWallet }
-            >
-              {listOfCurrencyCode.map((code) => (
-                <option data-testid={ code } key={ code }>{code}</option>
-              ))}
-            </select>
-          </label>
-          <label htmlFor="payment">
-            Forma de Pagamento:
-            <select
-              name="method"
-              id="payment"
-              data-testid="method-input"
-              value={ method }
-              onChange={ this.handleChangeWallet }
-            >
-              <option>Dinheiro</option>
-              <option>Cartão de crédito</option>
-              <option>Cartão de débito</option>
-            </select>
-          </label>
-          <label htmlFor="tag">
-            Tag:
-            <select
-              name="tag"
-              id="tag"
-              data-testid="tag-input"
-              value={ tag }
-              onChange={ this.handleChangeWallet }
-            >
-              <option>Alimentação</option>
-              <option>Lazer</option>
-              <option>Trabalho</option>
-              <option>Transporte</option>
-              <option>Saúde</option>
-            </select>
-          </label>
-          {displayEdit ? editBTN : <button type="submit">Adicionar despesa</button>}
-        </form>
-        <TableExpenses setEditExpense={ this.setEditExpense } />
-      </>
-    );
-  }
+  const setEditExpense = (editEXP) => {
+    const indexEditExpense = expenses.indexOf(editEXP);
+    setExpense(editEXP);
+    setDisplayEdit(true);
+    setIndexExpense(indexEditExpense);
+  };
+
+  const sendExpenseEdited = (event) => {
+    event.preventDefault();
+    dispatchEditExpense(expense, indexExpense);
+    setDisplayEdit(false);
+    setExpense({ ...stateDefault, id: expense.id + 1 });
+  };
+
+  const handleChangeWallet = ({ target: { name, value } }) => {
+    setExpense({ ...expense, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setExpense({ ...expense, id: expense.id + 1 });
+    dispatchExpense(expense);
+    setExpense({ ...expense, value: '', description: '' });
+    catchConvertedValueExpense();
+  };
+
+  const catchValueExpenses = () => {
+    // const { expenses } = this.props;
+    let totalValue = 0;
+    expenses.forEach(({ value, currency, exchangeRates }) => {
+      const cambio = exchangeRates[currency].ask;
+      const convertedValue = parseFloat(value) * parseFloat(cambio);
+      totalValue += convertedValue;
+    });
+    return totalValue;
+  };
+
+  const { value, description, currency, method, tag, exchangeRates } = expense;
+  const listOfCurrencyCode = Object.keys(exchangeRates);
+  const editBTN = (
+    <button type="submit">Editar</button>
+  );
+  return (
+    <>
+      <header>
+        <div>
+          <p data-testid="email-field">{ userEmail }</p>
+        </div>
+        <div>
+          <p data-testid="total-field">
+            {expenses.length !== 0 ? catchValueExpenses().toFixed(2) : 0}
+          </p>
+          <p data-testid="header-currency-field">BRL</p>
+        </div>
+      </header>
+      <form onSubmit={ displayEdit ? sendExpenseEdited : handleSubmit }>
+        <input
+          type="text"
+          name="value"
+          className="input-wallet"
+          placeholder="Valor da Despesa"
+          data-testid="value-input"
+          value={ value }
+          onChange={ handleChangeWallet }
+        />
+        <input
+          type="text"
+          name="description"
+          className="input-wallet"
+          placeholder="Descrição da Despesa"
+          data-testid="description-input"
+          value={ description }
+          onChange={ handleChangeWallet }
+        />
+        <label htmlFor="moedas">
+          Moeda:
+          <select
+            name="currency"
+            data-testid="currency-input"
+            id="moedas"
+            value={ currency }
+            onChange={ handleChangeWallet }
+          >
+            {listOfCurrencyCode.map((code) => (
+              <option data-testid={ code } key={ code }>{code}</option>
+            ))}
+          </select>
+        </label>
+        <label htmlFor="payment">
+          Forma de Pagamento:
+          <select
+            name="method"
+            id="payment"
+            data-testid="method-input"
+            value={ method }
+            onChange={ handleChangeWallet }
+          >
+            <option>Dinheiro</option>
+            <option>Cartão de crédito</option>
+            <option>Cartão de débito</option>
+          </select>
+        </label>
+        <label htmlFor="tag">
+          Tag:
+          <select
+            name="tag"
+            id="tag"
+            data-testid="tag-input"
+            value={ tag }
+            onChange={ handleChangeWallet }
+          >
+            <option>Alimentação</option>
+            <option>Lazer</option>
+            <option>Trabalho</option>
+            <option>Transporte</option>
+            <option>Saúde</option>
+          </select>
+        </label>
+        {displayEdit ? editBTN : <button type="submit">Adicionar despesa</button>}
+      </form>
+      <TableExpenses setEditExpense={ setEditExpense } userExpenses={ expenses } />
+    </>
+  );
 }
+// }
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchExpense: (expense) => dispatch(fetchAPICoin(expense)),
@@ -170,6 +172,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
+  userEmail: state.user.email,
   expenses: state.wallet.expenses,
 });
 
@@ -177,6 +180,7 @@ Wallet.propTypes = {
   dispatchExpense: PropTypes.func.isRequired,
   dispatchValueExpense: PropTypes.func.isRequired,
   dispatchEditExpense: PropTypes.func.isRequired,
+  userEmail: PropTypes.string.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { dataLogin } from '../actions';
+import styles from '../styles/login.modules.css';
 
 class Login extends React.Component {
   constructor() {
@@ -42,11 +43,11 @@ class Login extends React.Component {
   render() {
     const { email, senha, redirect } = this.state;
     return (
-      <form onSubmit={ this.handleSubmit }>
+      <form onSubmit={ this.handleSubmit } className={ styles.form_login }>
         <input
           type="email"
           name="email"
-          className="input-login"
+          className={ styles.input_login }
           placeholder="email"
           data-testid="email-input"
           onChange={ this.handleChangeLogin }
@@ -55,14 +56,17 @@ class Login extends React.Component {
         <input
           type="password"
           name="senha"
-          className="input-login"
+          className={ styles.input_login }
           placeholder="senha"
           data-testid="password-input"
           onChange={ this.handleChangeLogin }
           value={ senha }
         />
-        { this.inputValidation() ? <button type="submit">Entrar</button> : (
-          <button type="submit" disabled> Entrar</button>)}
+        {
+          this.inputValidation()
+            ? <button type="submit" className={ styles.btn_login }>Entrar</button> : (
+              <button type="submit" disabled> Entrar</button>)
+        }
         { redirect && <Redirect to="/carteira" /> }
       </form>
     );

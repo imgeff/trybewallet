@@ -5,6 +5,7 @@ import { fetchAPICoin, calculateValue, editExpense } from '../actions';
 import fetchApi from '../services/fetchApi';
 import TableExpenses from '../components/TableExpenses';
 import HeaderWallet from '../components/HeaderWallet';
+import { SbuttonAddExpense } from '../styles/Login';
 
 const stateDefault = {
   id: 0,
@@ -67,21 +68,10 @@ function Wallet(
   const { value, description, currency, method, tag, exchangeRates } = expense;
   const listOfCurrencyCode = Object.keys(exchangeRates);
   const editBTN = (
-    <button type="submit">Editar despesa</button>
+    <SbuttonAddExpense type="submit">Editar despesa</SbuttonAddExpense>
   );
   return (
     <>
-      {/* <header>
-        <div>
-          <p data-testid="email-field">{ userEmail }</p>
-        </div>
-        <div>
-          <p data-testid="total-field">
-            {expenses.length !== 0 ? catchValueExpenses().toFixed(2) : 0}
-          </p>
-          <p data-testid="header-currency-field">BRL</p>
-        </div>
-      </header> */}
       <HeaderWallet userEmail={ userEmail } expenses={ expenses } />
       <TableExpenses setEditExpense={ setEditExpense } userExpenses={ expenses } />
       <form
@@ -158,7 +148,8 @@ function Wallet(
             <option>Saúde</option>
           </select>
         </label>
-        {displayEdit ? editBTN : <button type="submit">Adicionar despesa</button>}
+        {displayEdit ? editBTN : (
+          <SbuttonAddExpense type="submit">Adicionar despesa</SbuttonAddExpense>)}
       </form>
     </>
   );

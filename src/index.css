@@ -14,6 +14,7 @@ html {
 }
 
 body, .root {
+  background: #ced4da;
   display: flex;
   flex-wrap: wrap;
   height: 100vh;
@@ -27,30 +28,81 @@ code {
 
 header {
   align-items: center;
+  background: #ced4da;
+  color: black;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   height: 75px;
+}
+
+#logo {
+  aspect-ratio: 1 / 1;
+  width: 100px;
+}
+
+.container-logo {
+  margin-left: 100px;
+}
+
+.container-header {
+  align-items: center;
+  background-color: #8DD070;
+  border-left: 2px solid #000000;
+  color: black;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 35%;
+}
+
+.container-header p {
+  font-weight: 700;
+  color: #000000;
+}
+
+.container-email {
+  display: flex;
+  margin-right: 80px;
+}
+
+#expense-total, #email-header {
+  color: #fdfffc;
+  font-weight: 700;
+  height: 100%;
+}
+
+#email-header {
+  margin-right: 10px;
 }
 
 .form-expense, .table-expenses {
   display: flex;
   justify-content: center;
+  height: 100%;
 }
 
 .form-expense {
   align-items: center;
+  background: #8DD070;
+  border-left: 2px solid #000000;
   flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 50px;
   width: 35%;
-  justify-content: center;
 }
 
 .table-expenses {
+  background: black;
+  border-top: 2px solid #ced4da;
+  color: #ced4da;
+  padding-top: 30px;
   width: 65%;
 }
 
 table {
   width: 95%;
+  font-weight: 700;
 }
 
 thead {
@@ -67,33 +119,66 @@ tbody {
 
 tr {
   align-items: center;
+  border-bottom: 2px solid lightgray;
   justify-content: center;
   display: flex;
-  /* justify-content: center; */
-  margin: 10px 0;
+  margin-top: 10px;
+  padding: 5px;
   width: 100%;
 }
 
 td, th {
   text-align: center;
   margin-right: 5px;
+  margin-bottom: 10px;
   width: 10%;
+}
+
+td button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+}
+
+button img {
+  aspect-ratio: 1 / 1;
+  width: 70%;
+}
+
+th {
+  color: #8DD070;
 }
 
 label {
   align-items: center;
+  color: #000000;
   display: flex;
   flex-direction: column;
+  font-weight: 700;
   justify-content: center;
   text-align: center;
-  width: 90%;
+  width: 55%;
 }
 
 input, select {
+  border-radius: 30px;
+  border: 2px double black;
+  font-weight: 700;
   height: 30px;
   margin: 5px 0;
-  width: 100%;
   text-align: center;
+  width: 100%;
+}
+
+input::placeholder {
+  font-weight: 700;
+}
+
+select {
+  background-color: white;
+  font-weight: 700;
+  width: 70%;
 }
 
 section { 

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { removeExpense, calculateValue } from '../actions';
+import iconEdit from '../images/lapis.png';
+import iconRemove from '../images/remover.svg';
 
 class TableExpenses extends React.Component {
   constructor(props) {
@@ -89,14 +91,14 @@ class TableExpenses extends React.Component {
                       type="button"
                       onClick={ () => this.catchEditExpense(expense) }
                     >
-                      Editar
+                      <img src={ iconEdit } alt="button Editar" />
                     </button>
                     <button
                       data-testid="delete-btn"
                       type="button"
                       onClick={ () => this.handleRemoveExpense(expense) }
                     >
-                      Excluir
+                      <img src={ iconRemove } alt="button remover" />
                     </button>
                   </td>
                 </tr>

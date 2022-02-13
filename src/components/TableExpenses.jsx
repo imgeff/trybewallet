@@ -43,7 +43,7 @@ class TableExpenses extends React.Component {
   render() {
     const { userExpenses } = this.props;
     return (
-      <section>
+      <section className="table-expenses">
         <table>
           <thead>
             <tr>

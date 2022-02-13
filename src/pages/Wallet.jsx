@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchAPICoin, calculateValue, editExpense } from '../actions';
 import fetchApi from '../services/fetchApi';
 import TableExpenses from '../components/TableExpenses';
+import HeaderWallet from '../components/HeaderWallet';
 
 const stateDefault = {
   id: 0,
@@ -63,16 +64,6 @@ function Wallet(
     catchConvertedValueExpense();
   };
 
-  const catchValueExpenses = () => {
-    let totalValue = 0;
-    expenses.forEach(({ value, currency, exchangeRates }) => {
-      const cambio = exchangeRates[currency].ask;
-      const convertedValue = parseFloat(value) * parseFloat(cambio);
-      totalValue += convertedValue;
-    });
-    return totalValue;
-  };
-
   const { value, description, currency, method, tag, exchangeRates } = expense;
   const listOfCurrencyCode = Object.keys(exchangeRates);
   const editBTN = (
@@ -80,7 +71,7 @@ function Wallet(
   );
   return (
     <>
-      <header>
+      {/* <header>
         <div>
           <p data-testid="email-field">{ userEmail }</p>
         </div>
@@ -90,28 +81,41 @@ function Wallet(
           </p>
           <p data-testid="header-currency-field">BRL</p>
         </div>
-      </header>
-      <form onSubmit={ displayEdit ? sendExpenseEdited : handleSubmit }>
-        <input
-          type="text"
-          name="value"
-          className="input-wallet"
-          placeholder="Valor da Despesa"
-          data-testid="value-input"
-          value={ value }
-          onChange={ handleChangeWallet }
-        />
-        <input
-          type="text"
-          name="description"
-          className="input-wallet"
-          placeholder="Descrição da Despesa"
-          data-testid="description-input"
-          value={ description }
-          onChange={ handleChangeWallet }
-        />
+      </header> */}
+      <HeaderWallet userEmail={ userEmail } expenses={ expenses } />
+      <TableExpenses setEditExpense={ setEditExpense } userExpenses={ expenses } />
+      <form
+        onSubmit={ displayEdit ? sendExpenseEdited : handleSubmit }
+        className="form-expense"
+      >
+        <label htmlFor="input-value">
+          Valor
+          <input
+            type="text"
+            name="value"
+            id="input-value"
+            className="input-wallet"
+            placeholder="Valor da Despesa"
+            data-testid="value-input"
+            value={ value }
+            onChange={ handleChangeWallet }
+          />
+        </label>
+        <label htmlFor="input-description">
+          Descrição
+          <input
+            type="text"
+            id="input-description"
+            name="description"
+            className="input-wallet"
+            placeholder="Descrição da Despesa"
+            data-testid="description-input"
+            value={ description }
+            onChange={ handleChangeWallet }
+          />
+        </label>
         <label htmlFor="moedas">
-          Moeda:
+          Moeda
           <select
             name="currency"
             data-testid="currency-input"
@@ -125,7 +129,7 @@ function Wallet(
           </select>
         </label>
         <label htmlFor="payment">
-          Forma de Pagamento:
+          Forma de Pagamento
           <select
             name="method"
             id="payment"
@@ -139,7 +143,7 @@ function Wallet(
           </select>
         </label>
         <label htmlFor="tag">
-          Tag:
+          Tag
           <select
             name="tag"
             id="tag"
@@ -156,11 +160,9 @@ function Wallet(
         </label>
         {displayEdit ? editBTN : <button type="submit">Adicionar despesa</button>}
       </form>
-      <TableExpenses setEditExpense={ setEditExpense } userExpenses={ expenses } />
     </>
   );
 }
-// }
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchExpense: (expense) => dispatch(fetchAPICoin(expense)),

@@ -154,6 +154,10 @@ const StextLabel = styled.span`
   margin-bottom: 5px;
 `;
 
+const SboxButtons = styled.div`
+  margin-top: 50px;
+`;
+
 export {
   Shome,
   Simg,
@@ -165,4 +169,5 @@ export {
   Sinput,
   Sbutton,
   SbuttonAddExpense,
+  SboxButtons,
 };

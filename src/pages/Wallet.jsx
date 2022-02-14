@@ -11,10 +11,17 @@ const stateDefault = {
   id: 0,
   value: '',
   description: '',
-  currency: 'USD',
+  currency: 'BRL',
   method: 'Dinheiro',
   tag: 'Alimentação',
   exchangeRates: {},
+};
+
+const rateBRL = {
+  code: 'BRL',
+  codein: 'BRL',
+  name: 'Real/Real Brasileiro',
+  ask: '1',
 };
 
 function Wallet(
@@ -29,6 +36,7 @@ function Wallet(
     fetchApi()
       .then((data) => {
         delete data.USDT;
+        data.BRL = rateBRL;
         setExpense({ ...expense, exchangeRates: data });
       });
   }, [displayEdit]);
@@ -113,6 +121,7 @@ function Wallet(
             value={ currency }
             onChange={ handleChangeWallet }
           >
+            <option>BRL</option>
             {listOfCurrencyCode.map((code) => (
               <option data-testid={ code } key={ code }>{code}</option>
             ))}

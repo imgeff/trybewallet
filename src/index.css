@@ -184,3 +184,14 @@ select {
 section { 
   width: 100%;
 }
+
+.login-container {
+  align-items: center;
+  background: radial-gradient(circle, rgba(253,254,254,1) 0%, rgba(182,188,194,1) 100%);
+  display: flex;
+  flex-wrap: wrap;
+  height: 880px;
+  justify-content: center;
+  width: 100%;
+}
+

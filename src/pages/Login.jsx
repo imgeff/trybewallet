@@ -7,7 +7,6 @@ import {
   Sform, Slabel, StextLabel, Sinput, Sbutton, Simg, Slink, Stext, Shome,
 } from '../styles/Login';
 import WalletImg from '../images/walletImg.svg';
-import '../styles/login.css';
 
 class Login extends React.Component {
   constructor() {

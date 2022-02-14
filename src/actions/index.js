@@ -24,7 +24,16 @@ export const dataExpense = (expense) => ({
 
 export const fetchAPICoin = (expense) => (dispatch) => {
   fetchApi()
-    .then((data) => dispatch(dataExpense({ ...expense, exchangeRates: data })));
+    .then((data) => {
+      const rateBRL = {
+        code: 'BRL',
+        codein: 'BRL',
+        name: 'Real/Real Brasileiro',
+        ask: '1',
+      };
+      data.BRL = rateBRL;
+      dispatch(dataExpense({ ...expense, exchangeRates: data }));
+    });
 };
 
 export const removeExpense = (filteredExpenses) => ({

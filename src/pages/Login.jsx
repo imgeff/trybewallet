@@ -16,6 +16,12 @@ class Login extends React.Component {
       email: '',
       senha: '',
       redirect: false,
+      authentication: {
+        feedbackMail: false,
+        feedbackPass: false,
+        mail: false,
+        pass: false,
+      },
     };
     this.handleChangeLogin = this.handleChangeLogin.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,14 +44,43 @@ class Login extends React.Component {
     return false;
   }
 
+  feedBackAuthenticate(campo) {
+    const { email, senha } = this.state;
+    const MIN_LENGTH = 6;
+    if (campo === 'email') {
+      if (email.includes('@') && email.includes('.com')) {
+        return this.setState(({ authentication }) => ({
+          authentication: { ...authentication, mail: true },
+        }));
+      }
+      if (!email.includes('@') || !email.includes('.com')) {
+        return this.setState(({ authentication }) => ({
+          authentication: { ...authentication, mail: false, feedbackMail: true },
+        }));
+      }
+    }
+    if (campo === 'senha') {
+      if (senha.length >= MIN_LENGTH) {
+        return this.setState(({ authentication }) => ({
+          authentication: { ...authentication, pass: true },
+        }));
+      } if (senha.length < MIN_LENGTH) {
+        return this.setState(({ authentication }) => ({
+          authentication: { ...authentication, pass: false, feedbackPass: true },
+        }));
+      }
+    }
+  }
+
   handleChangeLogin({ target: { name, value } }) {
     this.setState({
       [name]: value,
-    });
+    }, () => this.feedBackAuthenticate(name));
   }
 
   render() {
-    const { email, senha, redirect } = this.state;
+    const { email, senha, redirect, authentication:
+      { feedbackMail, feedbackPass, mail, pass } } = this.state;
     return (
       <section>
         <Shome>
@@ -53,7 +88,7 @@ class Login extends React.Component {
           <Stext>
             Monitore a sua vida financeira de forma simples e online
           </Stext>
-          <Slink href="#form-login">Vamos lá!</Slink>
+          <Slink href="#form-login">Fazer Login!</Slink>
         </Shome>
         <div className="login-container">
           <Sform id="form-login" onSubmit={ this.handleSubmit }>
@@ -69,6 +104,12 @@ class Login extends React.Component {
                 value={ email }
               />
             </Slabel>
+            {feedbackMail ? (
+              <span style={ { color: mail ? 'green' : 'red', fontWeight: '700' } }>
+                { mail ? '✓ Email válido!' : (
+                  'O email deve conter "@" e ".com" para ser válido!')}
+              </span>
+            ) : null }
             <Slabel htmlFor="input-pass">
               <StextLabel>Senha</StextLabel>
               <Sinput
@@ -81,6 +122,12 @@ class Login extends React.Component {
                 value={ senha }
               />
             </Slabel>
+            { feedbackPass ? (
+              <span style={ { color: pass ? 'green' : 'red', fontWeight: '700' } }>
+                { pass ? '✓ Senha válida' : (
+                  'A senha deve ter no mínimo 6 caracteres para ser válida')}
+              </span>
+            ) : null }
             {
               this.inputValidation()
                 ? <Sbutton type="submit">Entrar</Sbutton> : (

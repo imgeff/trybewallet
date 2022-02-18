@@ -89,7 +89,7 @@ function Wallet(
         <label htmlFor="input-value">
           Valor
           <input
-            type="text"
+            type="number"
             name="value"
             id="input-value"
             className="input-wallet"

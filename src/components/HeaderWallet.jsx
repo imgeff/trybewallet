@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SheaderValue, SpValue } from '../styles/Header';
-import Logo from '../images/walletImg.svg';
+import Logo from '../images/wallet.png';
+import imgWallet from '../images/walletImg.svg';
 
 function HeaderWallet({ userEmail, expenses }) {
   const catchValueExpenses = () => {
@@ -18,7 +19,10 @@ function HeaderWallet({ userEmail, expenses }) {
 
   return (
     <header>
-      <div className="container-logo"><img src={ Logo } alt="Logo" id="logo" /></div>
+      <div className="container-logo">
+        <img src={ imgWallet } alt="wallet" id="wallet" />
+        <img src={ Logo } alt="Logo" id="logo" />
+      </div>
       <div className="container-header">
         <div className="container-email">
           <span id="email-header">Email:</span>

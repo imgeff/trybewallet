@@ -23,6 +23,7 @@ const Slink = styled.button`
   cursor: pointer;
   text-decoration: none;
   padding: 15px 25px;
+  border: 2px solid #000;
   border-radius: 15px;
   color: #e8e8e8;
   z-index: 1;
@@ -32,7 +33,7 @@ const Slink = styled.button`
   font-size: 17px;
   -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
   box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-  transition: all 250ms;
+  transition: all 350ms;
   overflow: hidden;
   &::before {
   content: "";
@@ -46,7 +47,7 @@ const Slink = styled.button`
   z-index: -1;
   -webkit-box-shadow: 4px 8px 19px -3px #8DD070;
   box-shadow: 4px 8px 19px -3px #8DD070;
-  transition: all 250ms
+  transition: all 350ms
   }
   &:hover {
   color: black;

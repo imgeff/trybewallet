@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Simg, Slink, Stext, Shome } from '../styles/Login';
-import SlinkBtn from '../styles/BtnNewAccount';
 import WalletImg from '../images/walletImg.svg';
 
 class Home extends React.Component {
@@ -16,7 +15,9 @@ class Home extends React.Component {
           <Link to="/login" className="link-login">
             <Slink>Fazer Login!</Slink>
           </Link>
-          <SlinkBtn href="#gege">Ainda não tem um conta? Crie aqui!</SlinkBtn>
+          <Link to="/register" className="link-register">
+            Ainda não tem um conta? Crie aqui!
+          </Link>
         </Shome>
       </section>
     );

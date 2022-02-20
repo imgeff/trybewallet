@@ -47,6 +47,26 @@ header {
   font-weight: 700;
 }
 
+#welcome-text {
+  font-weight: 700;
+}
+
+#logout {
+  align-items: center;
+  color: red;
+  display: flex;
+  height: 100%;
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 50px;
+}
+
+#box-logout {
+  align-items: center;
+  display: flex;
+  margin-left: 230px;
+}
+
 #logo {
   aspect-ratio: 1 / 1;
   width: 200px;

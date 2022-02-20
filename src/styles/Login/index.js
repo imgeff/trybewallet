@@ -85,7 +85,7 @@ const Sinput = styled.input`
   border-radius: 20px;
   width: 75%;
   &::placeholder {
-    color: #495057;
+    color: #57606f;
   }
 `;
 
@@ -94,8 +94,8 @@ const Sbutton = styled.button`
   padding: 12px 30px;
   font-size: 15px;
   font-weight: 700;
-  color: #000;
-  background-color: #0039e5a9;
+  color: #fff;
+  background-color: #001011;
   border: 2px solid #001011;
   border-radius: 20px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -103,9 +103,9 @@ const Sbutton = styled.button`
   cursor: pointer;
   outline: none;
   &:hover {
-    background-color: #001011;
+    background-color: #8DD070;
     box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
-    color: #fff;
+    color: #000;
     transform: translateY(-7px);
    
   }
@@ -160,8 +160,9 @@ const SboxButtons = styled.div`
 `;
 
 const Sp = styled.p`
-  color: #343a40;
-  font-weight: 500;
+  font-size: 15px;
+  color: #1e272e;
+  font-weight: 400;
   margin: 10px 0;
 `;
 

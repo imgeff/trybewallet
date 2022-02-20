@@ -6,7 +6,9 @@ import WalletImg from '../images/walletImg.svg';
 class Home extends React.Component {
   componentDidMount() {
     const login = { nameRegister: '', emailRegister: '', passRegister: '' };
-    localStorage.setItem('login', JSON.stringify(login));
+    if (localStorage.getItem('login') === null) {
+      localStorage.setItem('login', JSON.stringify(login));
+    }
   }
 
   render() {

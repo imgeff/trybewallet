@@ -36,6 +36,11 @@ header {
   height: 75px;
 }
 
+.link-login {
+  cursor: pointer;
+  margin-top: 50px;
+}
+
 #logo {
   aspect-ratio: 1 / 1;
   width: 200px;

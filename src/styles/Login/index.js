@@ -19,11 +19,10 @@ const Stext = styled.b`
   font-size: 30px;
 `;
 
-const Slink = styled.a`
-  margin-top: 50px;
+const Slink = styled.button`
+  cursor: pointer;
   text-decoration: none;
   padding: 15px 25px;
-  border: unset;
   border-radius: 15px;
   color: #e8e8e8;
   z-index: 1;

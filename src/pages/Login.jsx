@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { Sform, Slabel, StextLabel, Sinput, Sbutton } from '../styles/Login';
 import { dataLogin } from '../actions';
-import {
-  Sform, Slabel, StextLabel, Sinput, Sbutton, Simg, Slink, Stext, Shome,
-} from '../styles/Login';
-import WalletImg from '../images/walletImg.svg';
 
 class Login extends React.Component {
   constructor() {
@@ -16,14 +13,14 @@ class Login extends React.Component {
       senha: '',
       redirect: false,
       authentication: {
-        feedbackMail: false,
-        feedbackPass: false,
         mail: false,
         pass: false,
+        feedbackMail: false,
+        feedbackPass: false,
       },
     };
-    this.handleChangeLogin = this.handleChangeLogin.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeLogin = this.handleChangeLogin.bind(this);
   }
 
   handleSubmit(event) {
@@ -80,62 +77,54 @@ class Login extends React.Component {
   render() {
     const { email, senha, redirect, authentication:
       { feedbackMail, feedbackPass, mail, pass } } = this.state;
+
     return (
-      <section>
-        <Shome>
-          <Simg src={ WalletImg } alt="wallet" />
-          <Stext>
-            Monitore a sua vida financeira de forma simples e online
-          </Stext>
-          <Slink href="#form-login">Fazer Login!</Slink>
-        </Shome>
-        <div className="login-container">
-          <Sform id="form-login" onSubmit={ this.handleSubmit }>
-            <Slabel htmlFor="input-email">
-              <StextLabel>Email</StextLabel>
-              <Sinput
-                id="input-email"
-                type="email"
-                name="email"
-                placeholder="Digite seu Email"
-                data-testid="email-input"
-                onChange={ this.handleChangeLogin }
-                value={ email }
-              />
-            </Slabel>
-            {feedbackMail ? (
-              <span style={ { color: mail ? 'green' : 'red', fontWeight: '700' } }>
-                { mail ? '✓ Email válido!' : (
-                  'O email deve conter "@" e ".com" para ser válido!')}
-              </span>
-            ) : null }
-            <Slabel htmlFor="input-pass">
-              <StextLabel>Senha</StextLabel>
-              <Sinput
-                id="input-pass"
-                type="password"
-                name="senha"
-                placeholder="Digite sua Senha"
-                data-testid="password-input"
-                onChange={ this.handleChangeLogin }
-                value={ senha }
-              />
-            </Slabel>
-            { feedbackPass ? (
-              <span style={ { color: pass ? 'green' : 'red', fontWeight: '700' } }>
-                { pass ? '✓ Senha válida' : (
-                  'A senha deve ter no mínimo 6 caracteres para ser válida')}
-              </span>
-            ) : null }
-            {
-              this.inputValidation()
-                ? <Sbutton type="submit">Entrar</Sbutton> : (
-                  <Sbutton type="submit" disabled> Entrar</Sbutton>)
-            }
-            { redirect && <Redirect to="/carteira" /> }
-          </Sform>
-        </div>
-      </section>
+      <div className="login-container">
+        <Sform id="form-login" onSubmit={ this.handleSubmit }>
+          <Slabel htmlFor="input-email">
+            <StextLabel>Email</StextLabel>
+            <Sinput
+              id="input-email"
+              type="email"
+              name="email"
+              placeholder="Digite seu Email"
+              data-testid="email-input"
+              onChange={ this.handleChangeLogin }
+              value={ email }
+            />
+          </Slabel>
+          {feedbackMail ? (
+            <span style={ { color: mail ? 'green' : 'red', fontWeight: '700' } }>
+              { mail ? '✓ Email válido!' : (
+                'O email deve conter "@" e ".com" para ser válido!')}
+            </span>
+          ) : null }
+          <Slabel htmlFor="input-pass">
+            <StextLabel>Senha</StextLabel>
+            <Sinput
+              id="input-pass"
+              type="password"
+              name="senha"
+              placeholder="Digite sua Senha"
+              data-testid="password-input"
+              onChange={ this.handleChangeLogin }
+              value={ senha }
+            />
+          </Slabel>
+          { feedbackPass ? (
+            <span style={ { color: pass ? 'green' : 'red', fontWeight: '700' } }>
+              { pass ? '✓ Senha válida' : (
+                'A senha deve ter no mínimo 6 caracteres para ser válida')}
+            </span>
+          ) : null }
+          {
+            this.inputValidation()
+              ? <Sbutton type="submit">Entrar</Sbutton> : (
+                <Sbutton type="submit" disabled> Entrar</Sbutton>)
+          }
+          { redirect && <Redirect to="/carteira" /> }
+        </Sform>
+      </div>
     );
   }
 }

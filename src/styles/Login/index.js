@@ -70,7 +70,8 @@ const Sform = styled.form`
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
-  height: 400px;
+  margin: auto;
+  padding: 30px 0;
   width: 35%;
 `;
 
@@ -84,7 +85,7 @@ const Sinput = styled.input`
   border-radius: 20px;
   width: 75%;
   &::placeholder {
-    color: #001011;
+    color: #495057;
   }
 `;
 
@@ -94,7 +95,7 @@ const Sbutton = styled.button`
   font-size: 15px;
   font-weight: 700;
   color: #000;
-  background-color: #d5d9dd;
+  background-color: #0039e5a9;
   border: 2px solid #001011;
   border-radius: 20px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -158,6 +159,12 @@ const SboxButtons = styled.div`
   margin-top: 50px;
 `;
 
+const Sp = styled.p`
+  color: #343a40;
+  font-weight: 500;
+  margin: 10px 0;
+`;
+
 export {
   Shome,
   Simg,
@@ -170,4 +177,5 @@ export {
   Sbutton,
   SbuttonAddExpense,
   SboxButtons,
+  Sp,
 };

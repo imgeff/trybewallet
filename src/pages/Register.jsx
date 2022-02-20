@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router';
+import { Sform, Slabel, Sinput, Sbutton, Sp } from '../styles/Login';
 
 class Register extends React.Component {
   constructor() {
@@ -46,29 +47,28 @@ class Register extends React.Component {
   render() {
     const { redirectLogin, disabled } = this.state;
     const disabledButton = (
-      <button
-        style={ { backgroundColor: '#0039e5a9', border: 'none' } }
+      <Sbutton
         type="button"
         data-testid="edit-button-save"
         disabled
       >
         Salvar
-      </button>);
+      </Sbutton>);
     const enabledButton = (
-      <button
+      <Sbutton
         type="button"
         data-testid="edit-button-save"
         onClick={ () => this.setState({ redirectLogin: true }) }
       >
         Salvar
-      </button>);
+      </Sbutton>);
     return (
-      <form>
+      <Sform>
         { redirectLogin === true && <Redirect to="/login" />}
-        <span>
+        <Slabel>
           Nome
-          <p>Fique à vontade para usar seu nome social</p>
-          <input
+          <Sp>Fique à vontade para usar seu nome social</Sp>
+          <Sinput
             data-testid="edit-input-name"
             type="text"
             id="edit-input-name"
@@ -77,11 +77,11 @@ class Register extends React.Component {
             onChange={ this.handleChange }
             minLength="1"
           />
-        </span>
-        <span>
+        </Slabel>
+        <Slabel>
           Email
-          <p>Escolha um e-mail que consulte diariamente</p>
-          <input
+          <Sp>Escolha um e-mail que consulte frequentemente</Sp>
+          <Sinput
             data-testid="edit-input-email"
             type="email"
             name="emailRegister"
@@ -89,20 +89,20 @@ class Register extends React.Component {
             placeholder="usuario@usuario.com"
             onChange={ this.handleChange }
           />
-        </span>
-        <span>
+        </Slabel>
+        <Slabel>
           Senha
-          <p>Escolha uma senha que você se lembre com facilidade</p>
-          <input
+          <Sp>Escolha uma senha que você se lembre com facilidade</Sp>
+          <Sinput
             data-testid="edit-input-password"
             type="password"
             name="passRegister"
             placeholder="Senha"
             onChange={ this.handleChange }
           />
-        </span>
+        </Slabel>
         { disabled ? disabledButton : enabledButton }
-      </form>
+      </Sform>
     );
   }
 }

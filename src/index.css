@@ -14,7 +14,7 @@ html {
 }
 
 body, .root {
-  background: #ced4da;
+  background: radial-gradient(circle, rgba(253,254,254,1) 0%, rgba(182,188,194,1) 100%);
   display: flex;
   flex-wrap: wrap;
   height: 100vh;

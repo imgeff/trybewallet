@@ -17,18 +17,36 @@ class Login extends React.Component {
         pass: false,
         feedbackMail: false,
         feedbackPass: false,
+        feedbackLogin: false,
       },
+      register: { nameRegister: '', emailRegister: '', passRegister: '' },
     };
+    this.catchRegister = this.catchRegister.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeLogin = this.handleChangeLogin.bind(this);
   }
 
+  componentDidMount() {
+    this.catchRegister();
+  }
+
+  catchRegister() {
+    const loginStorage = JSON.parse(localStorage.getItem('login'));
+    this.setState({ register: loginStorage });
+  }
+
   handleSubmit(event) {
     const { loginSubmit } = this.props;
-    const { email } = this.state;
+    const { email, senha, register: { emailRegister, passRegister } } = this.state;
     event.preventDefault();
-    loginSubmit(email);
-    this.setState({ redirect: true });
+    if (email === emailRegister && senha === passRegister) {
+      loginSubmit(email);
+      this.setState({ redirect: true });
+    } else {
+      this.setState((prevState) => ({
+        authentication: { ...prevState.authentication, feedbackLogin: true },
+      }));
+    }
   }
 
   inputValidation() {
@@ -76,7 +94,7 @@ class Login extends React.Component {
 
   render() {
     const { email, senha, redirect, authentication:
-      { feedbackMail, feedbackPass, mail, pass } } = this.state;
+      { feedbackMail, feedbackPass, feedbackLogin, mail, pass } } = this.state;
 
     return (
       <div className="login-container">
@@ -117,6 +135,13 @@ class Login extends React.Component {
                 'A senha deve ter no mínimo 6 caracteres para ser válida')}
             </span>
           ) : null }
+          {
+            feedbackLogin ? (
+              <span style={ { color: 'red', fontWeight: '700' } }>
+                Email ou senha Incorreta
+              </span>
+            ) : null
+          }
           {
             this.inputValidation()
               ? <Sbutton type="submit">Entrar</Sbutton> : (

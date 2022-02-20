@@ -6,9 +6,9 @@ class Register extends React.Component {
     super();
     this.state = {
       login: {
-        name: '',
-        email: '',
-        password: '',
+        nameRegister: '',
+        emailRegister: '',
+        passRegister: '',
       },
       redirectLogin: false,
       disabled: true,
@@ -30,9 +30,13 @@ class Register extends React.Component {
   }
 
   disabledButton() {
-    const { login: { email, password } } = this.state;
+    const { login: { emailRegister, passRegister } } = this.state;
     const SIX = 6;
-    if (email.includes('@') && email.includes('.com') && password.length >= SIX) {
+
+    const validRegister = (emailRegister.includes('@') && emailRegister.includes('.com')
+    && passRegister.length >= SIX);
+
+    if (validRegister) {
       this.setState({ disabled: false });
     } else {
       this.setState({ disabled: true });
@@ -68,7 +72,7 @@ class Register extends React.Component {
             data-testid="edit-input-name"
             type="text"
             id="edit-input-name"
-            name="name"
+            name="nameRegister"
             placeholder="Usuário"
             onChange={ this.handleChange }
             minLength="1"
@@ -80,7 +84,7 @@ class Register extends React.Component {
           <input
             data-testid="edit-input-email"
             type="email"
-            name="email"
+            name="emailRegister"
             id="edit-input-email"
             placeholder="usuario@usuario.com"
             onChange={ this.handleChange }
@@ -92,7 +96,7 @@ class Register extends React.Component {
           <input
             data-testid="edit-input-password"
             type="password"
-            name="password"
+            name="passRegister"
             placeholder="Senha"
             onChange={ this.handleChange }
           />

@@ -22,7 +22,7 @@ class Login extends React.Component {
       register: { nameRegister: '', emailRegister: '', passRegister: '' },
     };
     this.catchRegister = this.catchRegister.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.authenticationLogin = this.authenticationLogin.bind(this);
     this.handleChangeLogin = this.handleChangeLogin.bind(this);
   }
 
@@ -35,7 +35,8 @@ class Login extends React.Component {
     this.setState({ register: loginStorage });
   }
 
-  handleSubmit(event) {
+  authenticationLogin(event) {
+    console.log('aqui');
     const { loginSubmit } = this.props;
     const { email, senha, register: { emailRegister, passRegister } } = this.state;
     event.preventDefault();
@@ -93,12 +94,14 @@ class Login extends React.Component {
   }
 
   render() {
-    const { email, senha, redirect, authentication:
-      { feedbackMail, feedbackPass, feedbackLogin, mail, pass } } = this.state;
+    const {
+      email, senha, redirect,
+      authentication: { feedbackMail, feedbackPass, feedbackLogin, mail, pass },
+    } = this.state;
 
     return (
       <div className="login-container">
-        <Sform id="form-login" onSubmit={ this.handleSubmit }>
+        <Sform id="form-login" onSubmit={ this.authenticationLogin }>
           <Slabel htmlFor="input-email">
             <StextLabel>Email</StextLabel>
             <Sinput
@@ -111,12 +114,14 @@ class Login extends React.Component {
               value={ email }
             />
           </Slabel>
-          {feedbackMail ? (
-            <span style={ { color: mail ? 'green' : 'red', fontWeight: '700' } }>
-              { mail ? '✓ Email válido!' : (
-                'O email deve conter "@" e ".com" para ser válido!')}
-            </span>
-          ) : null }
+          {
+            feedbackMail ? (
+              <span style={ { color: mail ? 'green' : 'red', fontWeight: '700' } }>
+                { mail ? '✓ Email válido!' : (
+                  'O email deve conter "@" e ".com" para ser válido!')}
+              </span>
+            ) : null
+          }
           <Slabel htmlFor="input-pass">
             <StextLabel>Senha</StextLabel>
             <Sinput
@@ -129,12 +134,14 @@ class Login extends React.Component {
               value={ senha }
             />
           </Slabel>
-          { feedbackPass ? (
-            <span style={ { color: pass ? 'green' : 'red', fontWeight: '700' } }>
-              { pass ? '✓ Senha válida' : (
-                'A senha deve ter no mínimo 6 caracteres para ser válida')}
-            </span>
-          ) : null }
+          {
+            feedbackPass ? (
+              <span style={ { color: pass ? 'green' : 'red', fontWeight: '700' } }>
+                { pass ? '✓ Senha válida' : (
+                  'A senha deve ter no mínimo 6 caracteres para ser válida')}
+              </span>
+            ) : null
+          }
           {
             feedbackLogin ? (
               <span style={ { color: 'red', fontWeight: '700' } }>

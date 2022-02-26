@@ -50,7 +50,7 @@ class HeaderWallet extends React.Component {
             <span id="expense-total">Despesa Total:</span>
             <SpValue data-testid="total-field">
               R$
-              { (JSON.parse(localStorage.getItem('state')).totalValue).toFixed(2) }
+              { Number(JSON.parse(localStorage.getItem('state')).totalValue).toFixed(2) }
             </SpValue>
             <SpValue data-testid="header-currency-field">BRL</SpValue>
           </SheaderValue>

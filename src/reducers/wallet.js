@@ -49,7 +49,7 @@ const walletReducer = (state = INITIAL_STATE, action) => {
 
   case EDIT_EXPENSE:
     state.expenses[indexExpense] = expense;
-    state = { ...state, totalValue: calculateValueExpenses(state.expenses) };
+    state = { ...state, totalValue: Number(calculateValueExpenses(state.expenses)) };
     localStorage.setItem('state', JSON.stringify(state));
     return state;
 

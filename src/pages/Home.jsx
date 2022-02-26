@@ -9,6 +9,10 @@ class Home extends React.Component {
     if (localStorage.getItem('login') === null) {
       localStorage.setItem('login', JSON.stringify(login));
     }
+    if (localStorage.getItem('state') === null) {
+      const state = { expenses: [], totalValue: 0.00 };
+      localStorage.setItem('state', JSON.stringify(state));
+    }
   }
 
   render() {

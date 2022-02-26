@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAPICoin, calculateValue, editExpense } from '../actions';
+import { fetchAPICoin, calculateValue, editExpense,
+  catchStorageExpenses } from '../actions';
 import fetchApi from '../services/fetchApi';
 import TableExpenses from '../components/TableExpenses';
 import HeaderWallet from '../components/HeaderWallet';
 import { SbuttonAddExpense } from '../styles/Login';
 
 const stateDefault = {
-  id: 0,
   value: '',
   description: '',
   currency: 'BRL',
@@ -25,7 +25,8 @@ const rateBRL = {
 };
 
 function Wallet(
-  { expenses, dispatchEditExpense, dispatchExpense, dispatchValueExpense, userEmail },
+  { expenses, dispatchEditExpense, dispatchExpense, dispatchValueExpense,
+    dispatchCatchExpenses, userEmail },
 ) {
   const [expense, setExpense] = useState(stateDefault);
 
@@ -40,6 +41,11 @@ function Wallet(
         setExpense({ ...expense, exchangeRates: data });
       });
   }, [displayEdit]);
+
+  useEffect(() => {
+    const stateStorage = JSON.parse(localStorage.getItem('state'));
+    dispatchCatchExpenses(stateStorage.expenses, stateStorage.totalValue);
+  }, []);
 
   const catchConvertedValueExpense = () => {
     const { value, currency, exchangeRates } = expense;
@@ -68,9 +74,9 @@ function Wallet(
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    catchConvertedValueExpense();
     dispatchExpense(expense);
     setExpense({ ...expense, value: '', description: '' });
-    catchConvertedValueExpense();
   };
 
   const { value, description, currency, method, tag, exchangeRates } = expense;
@@ -169,6 +175,8 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchValueExpense: (value, operation) => dispatch(calculateValue(value, operation)),
   dispatchEditExpense: (
     (expense, indexExpense) => dispatch(editExpense(expense, indexExpense))),
+  dispatchCatchExpenses: (expenses, totalValue) => (
+    dispatch(catchStorageExpenses(expenses, totalValue))),
 });
 
 const mapStateToProps = (state) => ({
@@ -180,6 +188,7 @@ Wallet.propTypes = {
   dispatchExpense: PropTypes.func.isRequired,
   dispatchValueExpense: PropTypes.func.isRequired,
   dispatchEditExpense: PropTypes.func.isRequired,
+  dispatchCatchExpenses: PropTypes.func.isRequired,
   userEmail: PropTypes.string.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

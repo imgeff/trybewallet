@@ -9,7 +9,6 @@ class TableExpenses extends React.Component {
   constructor(props) {
     super(props);
     this.handleRemoveExpense = this.handleRemoveExpense.bind(this);
-    this.catchConvertedValueExpense = this.catchConvertedValueExpense.bind(this);
     this.catchEditExpense = this.catchEditExpense.bind(this);
     this.orderExpenses = this.orderExpenses.bind(this);
   }
@@ -25,21 +24,12 @@ class TableExpenses extends React.Component {
     });
   }
 
-  handleRemoveExpense(expense) {
-    const { removeUserExpense, userExpenses } = this.props;
+  handleRemoveExpense(expense, convertValue) {
+    const { removeUserExpense, userExpenses, dispatchValueExpense } = this.props;
     const filterExpenses = userExpenses
       .filter((expenseOriginal) => expenseOriginal !== expense);
-    // this.orderExpenses(filterExpenses);
     removeUserExpense(filterExpenses);
-    this.catchConvertedValueExpense(...userExpenses);
-  }
-
-  catchConvertedValueExpense(expense) {
-    const { dispatchValueExpense } = this.props;
-    const { value, currency, exchangeRates } = expense;
-    const cambio = Number(exchangeRates[currency].ask);
-    const convertedExpenseValue = Number(value) * cambio;
-    dispatchValueExpense(convertedExpenseValue, '-');
+    dispatchValueExpense(convertValue, '-');
   }
 
   render() {
@@ -96,7 +86,7 @@ class TableExpenses extends React.Component {
                     <button
                       data-testid="delete-btn"
                       type="button"
-                      onClick={ () => this.handleRemoveExpense(expense) }
+                      onClick={ () => this.handleRemoveExpense(expense, convertValue) }
                     >
                       <img src={ iconRemove } alt="button remover" />
                     </button>

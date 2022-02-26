@@ -5,6 +5,7 @@ export const DATA_EXPENSE = 'DATA_EXPENSE';
 export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
 export const CALCULATE_VALUE = 'CALCULATE_VALUE';
 export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const CATCH_EXPENSES = 'CATCH_EXPENSES';
 // ============== ACTION CREATORS ================
 export const editExpense = (expense, indexExpense) => ({
   type: EDIT_EXPENSE,
@@ -35,6 +36,12 @@ export const fetchAPICoin = (expense) => (dispatch) => {
       dispatch(dataExpense({ ...expense, exchangeRates: data }));
     });
 };
+
+export const catchStorageExpenses = (expenses, totalValue) => ({
+  type: CATCH_EXPENSES,
+  expenses,
+  totalValue,
+});
 
 export const removeExpense = (filteredExpenses) => ({
   type: REMOVE_EXPENSE,

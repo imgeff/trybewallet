@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { SheaderValue, SpValue } from '../styles/Header';
 import Logo from '../images/wallet.png';
 import imgWallet from '../images/walletImg.svg';
@@ -28,20 +26,7 @@ class HeaderWallet extends React.Component {
     });
   }
 
-  catchValueExpenses = () => {
-    const { expenses } = this.props;
-    let totalValue = 0;
-    expenses.forEach((expense) => {
-      const { value, currency, exchangeRates } = expense;
-      const cambio = exchangeRates[currency].ask;
-      const convertedValue = parseFloat(value) * parseFloat(cambio);
-      totalValue += convertedValue;
-    });
-    return totalValue;
-  }
-
   render() {
-    const { expenses } = this.props;
     const { name, userEmail } = this.state;
     return (
       <header>
@@ -65,7 +50,7 @@ class HeaderWallet extends React.Component {
             <span id="expense-total">Despesa Total:</span>
             <SpValue data-testid="total-field">
               R$
-              {expenses.length !== 0 ? this.catchValueExpenses().toFixed(2) : 0.00}
+              { (JSON.parse(localStorage.getItem('state')).totalValue).toFixed(2) }
             </SpValue>
             <SpValue data-testid="header-currency-field">BRL</SpValue>
           </SheaderValue>
@@ -75,13 +60,4 @@ class HeaderWallet extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  userEmail: state.user.email,
-});
-
-HeaderWallet.propTypes = {
-  userEmail: PropTypes.string.isRequired,
-  expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
-export default connect(mapStateToProps)(HeaderWallet);
+export default HeaderWallet;

@@ -7,6 +7,7 @@ import fetchApi from '../services/fetchApi';
 import TableExpenses from '../components/TableExpenses';
 import HeaderWallet from '../components/HeaderWallet';
 import { SbuttonAddExpense } from '../styles/Login';
+import Footer from '../components/Footer';
 
 const stateDefault = {
   value: '',
@@ -166,6 +167,7 @@ function Wallet(
         {displayEdit ? editBTN : (
           <SbuttonAddExpense type="submit">Adicionar despesa</SbuttonAddExpense>)}
       </form>
+      <Footer />
     </>
   );
 }

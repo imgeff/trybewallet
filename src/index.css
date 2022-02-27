@@ -232,3 +232,58 @@ section {
   width: 100%;
 }
 
+footer {
+  /* align-items: center; */
+  background-color: #000000;
+  display: flex;
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
+  /* padding: 15px 0; */
+  width: 100%;
+}
+
+#nav-footer {
+  margin-top: 20px;
+  text-align: center;
+  width: 50%;
+}
+
+#link-portfolio {
+  text-decoration: none;
+  color: #ced4da;
+}
+
+#link-portfolio:hover {
+  color: #2d2e2f;
+  transition: 0.2s;
+}
+
+#link-edin, #link-github {
+  aspect-ratio: 1 / 1;
+  margin-right: 12px;
+  width: 33px;
+}
+
+#div-primary {
+  align-items: center;
+  border-top: 2px solid #2d2e2f;
+  color: #ced4da;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 65.3%;
+}
+
+#div-primary div  {
+  margin-top: 20px;
+  width: 50%;
+}
+
+#div-secondary {
+  background-color: #8DD070;
+  height: 100%;
+  width: 35%;
+}

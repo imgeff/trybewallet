@@ -104,7 +104,7 @@ header {
 }
 
 #expense-total, #email-header {
-  color: #fdfffc;
+  color: #3D495C;
   font-weight: 700;
   height: 100%;
 }
@@ -233,12 +233,8 @@ section {
 }
 
 footer {
-  /* align-items: center; */
   background-color: #000000;
   display: flex;
-  /* flex-wrap: wrap; */
-  /* justify-content: center; */
-  /* padding: 15px 0; */
   width: 100%;
 }
 

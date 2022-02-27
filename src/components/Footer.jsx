@@ -8,8 +8,9 @@ class Footer extends React.Component {
       <footer>
         <div id="div-primary">
           <div>
-            Desenvolvido Por
-            <a href="https://imgeff.github.io/" target="_blank" rel="noreferrer" id="link-portfolio"> Gefferson Batista</a>
+            ©
+            <a href="https://imgeff.github.io/" target="_blank" rel="noreferrer" id="link-portfolio"> Gefferson Batista </a>
+            - 2022
           </div>
           <nav id="nav-footer">
             <a href="https://www.linkedin.com/in/geffbatista/" target="_blank" rel="noreferrer"><img src={ iconLinkedin } alt="Linkedin" id="link-edin" /></a>

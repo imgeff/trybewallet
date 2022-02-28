@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Sform, Slabel, StextLabel, Sinput, Sbutton } from '../styles/Login';
+import { Sform, Slabel, Sinput, Sbutton } from '../styles/Global';
+import { StextLabel } from '../styles/Login';
 import { dataLogin } from '../actions';
 
 class Login extends React.Component {
@@ -36,7 +37,6 @@ class Login extends React.Component {
   }
 
   authenticationLogin(event) {
-    console.log('aqui');
     const { loginSubmit } = this.props;
     const { email, senha, register: { emailRegister, passRegister } } = this.state;
     event.preventDefault();

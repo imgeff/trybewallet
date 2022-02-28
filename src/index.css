@@ -260,6 +260,10 @@ footer {
   width: 33px;
 }
 
+#link-edin:hover, #link-github:hover {
+  zoom: 1.1;
+} 
+
 #div-primary {
   align-items: center;
   border-top: 2px solid #2d2e2f;

@@ -1,6 +1,6 @@
 import React from 'react';
-import iconLinkedin from '../images/linkedin.svg';
-import iconGithub from '../images/github.svg';
+import iconLinkedin from '../../images/linkedin.svg';
+import iconGithub from '../../images/github.svg';
 
 class Footer extends React.Component {
   render() {

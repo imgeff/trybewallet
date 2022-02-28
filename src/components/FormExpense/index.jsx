@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAPICoin, calculateValue, editExpense,
-  catchStorageExpenses } from '../actions';
-import { SbuttonAddExpense } from '../styles/Login';
+  catchStorageExpenses } from '../../actions';
+import { SbuttonAddExpense } from '../../styles/Login';
 
 class FormExpense extends React.Component {
   catchConvertedValueExpense = () => {

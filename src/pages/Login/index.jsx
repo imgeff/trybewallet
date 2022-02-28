@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Sform, Slabel, Sinput, Sbutton } from '../styles/Global';
-import { StextLabel } from '../styles/Login';
-import { dataLogin } from '../actions';
+import { Sform, Slabel, Sinput, Sbutton } from '../../styles/Global';
+import { StextLabel } from '../../styles/Login';
+import { dataLogin } from '../../actions';
 
 class Login extends React.Component {
   constructor() {

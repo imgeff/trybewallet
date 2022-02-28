@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Simg, Slink, Stext, Shome } from '../styles/Home';
-import WalletImg from '../images/walletImg.svg';
+import { Simg, Slink, Stext, Shome } from '../../styles/Home';
+import WalletImg from '../../images/walletImg.svg';
 
 class Home extends React.Component {
   componentDidMount() {

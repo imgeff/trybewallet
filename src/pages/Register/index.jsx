@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-import Sp from '../styles/Register';
-import { Sform, Slabel, Sinput, Sbutton } from '../styles/Global';
+import Sp from '../../styles/Register';
+import { Sform, Slabel, Sinput, Sbutton } from '../../styles/Global';
 
 class Register extends React.Component {
   constructor() {

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeExpense, calculateValue } from '../actions';
-import iconEdit from '../images/lapis.png';
-import iconRemove from '../images/remover.svg';
+import { removeExpense, calculateValue } from '../../actions';
+import iconEdit from '../../images/lapis.png';
+import iconRemove from '../../images/remover.svg';
 
 class TableExpenses extends React.Component {
   constructor(props) {

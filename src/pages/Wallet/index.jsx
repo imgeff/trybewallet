@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { catchStorageExpenses } from '../actions';
-import fetchApi from '../services/fetchApi';
-import TableExpenses from '../components/TableExpenses';
-import HeaderWallet from '../components/HeaderWallet';
-import Footer from '../components/Footer';
-import FormExpense from '../components/FormExpense';
+import { catchStorageExpenses } from '../../actions';
+import fetchApi from '../../services/fetchApi';
+import TableExpenses from '../../components/TableExpenses';
+import HeaderWallet from '../../components/HeaderWallet';
+import Footer from '../../components/Footer';
+import FormExpense from '../../components/FormExpense';
 
 const stateDefault = {
   value: '',

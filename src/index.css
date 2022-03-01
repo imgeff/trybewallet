@@ -289,7 +289,7 @@ footer {
 }
 
 @media screen and ( max-width : 970px ) {
-
+/* Page home */
   .sc-bdvvtL {
     height: 100vh !important;
   }
@@ -309,5 +309,34 @@ footer {
   .sc-hKwDye {
     padding: 12px 12px !important;
     border-radius: 12px !important;
+  }
+  /* Page login */
+  .login-container {
+    height: 100vh !important;
+  }
+
+  .sc-iCfMLu  {
+    margin-top: 30px !important;
+  }
+
+  #form-login {
+    margin: auto;
+    width: 90%;
+    padding: 0;
+  }
+
+  #input-email, #input-pass {
+    width: 80%;
+  }
+
+  .feedback-login {
+    font-size: 14px;
+    text-align: center;
+    width: 90%;
+  }
+
+  .sc-gKclnd {
+    margin-top: 20px !important;
+    margin-bottom: 30px !important;
   }
 }

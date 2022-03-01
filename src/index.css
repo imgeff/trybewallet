@@ -491,7 +491,8 @@ footer {
   }
 
   #div-primary div {
-    margin-left: 5%;
+    margin-left: 7%;
+    text-align: start;
   }
 
   #nav-footer {

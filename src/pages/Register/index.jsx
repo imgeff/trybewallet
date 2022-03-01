@@ -77,6 +77,7 @@ class Register extends React.Component {
             placeholder="Usuário"
             onChange={ this.handleChange }
             minLength="1"
+            spellCheck="false"
           />
         </Slabel>
         <Slabel>
@@ -89,6 +90,7 @@ class Register extends React.Component {
             id="edit-input-email"
             placeholder="usuario@usuario.com"
             onChange={ this.handleChange }
+            spellCheck="false"
           />
         </Slabel>
         <Slabel>

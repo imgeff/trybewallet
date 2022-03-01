@@ -112,6 +112,7 @@ class Login extends React.Component {
               data-testid="email-input"
               onChange={ this.handleChangeLogin }
               value={ email }
+              spellCheck="false"
             />
           </Slabel>
           {

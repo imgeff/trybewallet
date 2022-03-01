@@ -116,7 +116,10 @@ class Login extends React.Component {
           </Slabel>
           {
             feedbackMail ? (
-              <span style={ { color: mail ? 'green' : 'red', fontWeight: '700' } }>
+              <span
+                style={ { color: mail ? 'green' : 'red', fontWeight: '700' } }
+                className="feedback-login"
+              >
                 { mail ? '✓ Email válido!' : (
                   'O email deve conter "@" e ".com" para ser válido!')}
               </span>
@@ -136,7 +139,10 @@ class Login extends React.Component {
           </Slabel>
           {
             feedbackPass ? (
-              <span style={ { color: pass ? 'green' : 'red', fontWeight: '700' } }>
+              <span
+                style={ { color: pass ? 'green' : 'red', fontWeight: '700' } }
+                className="feedback-login"
+              >
                 { pass ? '✓ Senha válida' : (
                   'A senha deve ter no mínimo 6 caracteres para ser válida')}
               </span>
@@ -144,7 +150,10 @@ class Login extends React.Component {
           }
           {
             feedbackLogin ? (
-              <span style={ { color: 'red', fontWeight: '700' } }>
+              <span
+                style={ { color: 'red', fontWeight: '700' } }
+                className="feedback-login"
+              >
                 Email ou senha Incorreta
               </span>
             ) : null

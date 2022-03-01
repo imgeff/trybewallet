@@ -155,16 +155,16 @@ FormExpense.propTypes = {
     currency: PropTypes.string,
     method: PropTypes.string,
     tag: PropTypes.string,
-    exchangeRates: PropTypes.arrayOf(PropTypes.object),
+    exchangeRates: PropTypes.objectOf(PropTypes.object),
   }).isRequired,
   expense: PropTypes.shape({
     id: PropTypes.number,
-    value: PropTypes.number,
+    value: PropTypes.string,
     description: PropTypes.string,
     currency: PropTypes.string,
     method: PropTypes.string,
     tag: PropTypes.string,
-    exchangeRates: PropTypes.arrayOf(PropTypes.object),
+    exchangeRates: PropTypes.objectOf(PropTypes.object),
   }).isRequired,
 };
 

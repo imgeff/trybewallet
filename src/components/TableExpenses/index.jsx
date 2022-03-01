@@ -33,9 +33,9 @@ class TableExpenses extends React.Component {
   }
 
   render() {
-    const { userExpenses } = this.props;
+    const { userExpenses, idCSS } = this.props;
     return (
-      <section className="table-expenses">
+      <section id={ idCSS } className="table-expenses">
         <table>
           <thead>
             <tr>
@@ -107,6 +107,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 TableExpenses.propTypes = {
+  idCSS: PropTypes.string.isRequired,
   userExpenses: PropTypes.arrayOf(PropTypes.object).isRequired,
   removeUserExpense: PropTypes.func.isRequired,
   dispatchValueExpense: PropTypes.func.isRequired,

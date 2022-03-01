@@ -287,3 +287,197 @@ footer {
   height: 100%;
   width: 35%;
 }
+
+#mobile {
+  display: none;
+}
+
+@media screen and ( max-width : 970px ) {
+/* Page home */
+  .sc-bdvvtL {
+    height: 100vh !important;
+  }
+
+  .sc-gsDKAQ {
+    aspect-ratio: 1 / 1;
+    margin-top: 100px;
+    max-width: 70%;
+  }
+
+  .sc-dkPtRN {
+    font-size: 18px !important;
+    max-width: 92%;
+    text-align: center;
+  }
+
+  .sc-hKwDye {
+    padding: 12px 12px !important;
+    border-radius: 12px !important;
+  }
+  /* Page login */
+  .login-container {
+    height: 100vh !important;
+  }
+
+  .sc-iCfMLu  {
+    margin-top: 30px !important;
+  }
+
+  #form-login {
+    margin: auto;
+    width: 90%;
+    padding: 0;
+  }
+
+  #input-email, #input-pass {
+    width: 80%;
+  }
+
+  .feedback-login {
+    font-size: 14px;
+    text-align: center;
+    width: 90%;
+  }
+
+  .sc-gKclnd {
+    margin-top: 20px !important;
+    margin-bottom: 30px !important;
+  }
+  /* Page register */
+  .sc-eCImPb {
+    padding: 0 !important;
+    width: 90% !important;
+  }
+
+  .sc-eCImPb input {
+    width: 80%;
+  }
+
+  .sc-eCImPb p {
+    text-align: center;
+    width: 80%;
+  }
+  /* Page wallet */
+  header {
+    height: fit-content;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    width: 100% !important;
+  }
+
+  .container-logo {
+    margin: 0 !important;
+    justify-content: center;
+    max-height: 90px;
+    width: 100%;
+  }
+
+  .container-logo img#logo {
+    height: 140px;
+    position: relative;
+    margin-top: -15px;
+    width: 140px !important;
+  }
+
+  #box-logout {
+    margin: 0;
+    width: 100%;
+  }
+
+  #welcome-text {
+    font-size: 13px;
+    text-align: center;
+    padding: 0 13px;
+  }
+
+  #logout {
+    margin-left: 30px;
+  }
+
+  .container-header {
+    border: none;
+    height: 50px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .container-email {
+    display: none;
+  }
+
+  #desktop {
+    display: none;
+  }
+
+  #mobile {
+    display: block;
+  }
+
+  .form-expense {
+    border-left: none;
+    height: fit-content;
+    margin-top: -15px;
+    width: 100%;
+  }
+
+  .form-expense label {
+    font-size: 14px;
+  }
+
+  .form-expense label input, select {
+    font-size: 12px;
+  }
+
+  .sc-furwcr {
+    font-size: 13px !important;
+    padding: 10px 15px !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .table-expenses {
+    width: 100%;
+  }
+
+  table {
+    display: block;
+    font-size: 12px;
+    overflow-x: auto;
+  }
+
+  thead th {
+    margin: 0 10px;
+    width: 80px;
+  }
+
+  tbody td {
+    width: 98px !important;
+  }
+
+  tbody, tbody tr {
+    width: 910px;
+    display: block;
+  }
+
+  footer {
+    font-size: 13px;
+  }
+
+  #div-primary {
+    width: 100%;
+  }
+
+  #nav-footer {
+    text-align: end;
+  }
+
+  #link-edin, #link-github {
+    width: 25px;
+  }
+
+  #div-secondary {
+    display: none;
+  }
+}

@@ -54,7 +54,11 @@ function Wallet({ expenses, dispatchCatchExpenses, userEmail }) {
   return (
     <>
       <HeaderWallet userEmail={ userEmail } expenses={ expenses } />
-      <TableExpenses setEditExpense={ setEditExpense } userExpenses={ expenses } />
+      <TableExpenses
+        setEditExpense={ setEditExpense }
+        userExpenses={ expenses }
+        idCSS="desktop"
+      />
       <FormExpense
         setExpense={ setExpense }
         expense={ expense }
@@ -62,6 +66,11 @@ function Wallet({ expenses, dispatchCatchExpenses, userEmail }) {
         displayEdit={ displayEdit }
         indexExpense={ indexExpense }
         stateDefault={ stateDefault }
+      />
+      <TableExpenses
+        setEditExpense={ setEditExpense }
+        userExpenses={ expenses }
+        idCSS="mobile"
       />
       <Footer />
     </>

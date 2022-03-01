@@ -47,6 +47,11 @@ header {
   font-weight: 700;
 }
 
+.link-register:hover {
+  transition: 0.2s;
+  color: #252527;
+}
+
 #welcome-text {
   font-weight: 700;
 }
@@ -381,6 +386,7 @@ footer {
   }
 
   #box-logout {
+    justify-content: space-between;
     margin: 0;
     width: 100%;
   }
@@ -388,11 +394,12 @@ footer {
   #welcome-text {
     font-size: 13px;
     text-align: center;
-    padding: 0 13px;
+    margin-left: 5%;
   }
 
   #logout {
-    margin-left: 30px;
+    margin-left: 0;
+    margin-right: 5%;
   }
 
   .container-header {
@@ -461,6 +468,10 @@ footer {
     display: block;
   }
 
+  tr {
+    margin: auto;
+  }
+
   footer {
     font-size: 13px;
   }
@@ -469,12 +480,20 @@ footer {
     width: 100%;
   }
 
+  #div-primary div {
+    margin-left: 5%;
+  }
+
   #nav-footer {
     text-align: end;
   }
 
   #link-edin, #link-github {
     width: 25px;
+  }
+
+  #link-github {
+    margin-right: 15%;
   }
 
   #div-secondary {

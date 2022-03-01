@@ -339,4 +339,18 @@ footer {
     margin-top: 20px !important;
     margin-bottom: 30px !important;
   }
+  /* Page register */
+  .sc-eCImPb {
+    padding: 0 !important;
+    width: 90% !important;
+  }
+
+  .sc-eCImPb input {
+    width: 80%;
+  }
+
+  .sc-eCImPb p {
+    text-align: center;
+    width: 80%;
+  }
 }

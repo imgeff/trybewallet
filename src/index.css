@@ -287,3 +287,27 @@ footer {
   height: 100%;
   width: 35%;
 }
+
+@media screen and ( max-width : 970px ) {
+
+  .sc-bdvvtL {
+    height: 100vh !important;
+  }
+
+  .sc-gsDKAQ {
+    aspect-ratio: 1 / 1;
+    margin-top: 100px;
+    max-width: 70%;
+  }
+
+  .sc-dkPtRN {
+    font-size: 18px !important;
+    max-width: 92%;
+    text-align: center;
+  }
+
+  .sc-hKwDye {
+    padding: 12px 12px !important;
+    border-radius: 12px !important;
+  }
+}

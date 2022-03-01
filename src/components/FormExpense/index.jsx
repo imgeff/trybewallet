@@ -70,6 +70,7 @@ class FormExpense extends React.Component {
             data-testid="description-input"
             value={ description }
             onChange={ this.handleChangeWallet }
+            spellCheck="false"
           />
         </label>
         <label htmlFor="moedas">

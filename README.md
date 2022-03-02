@@ -56,8 +56,6 @@ Para garantir a qualidade do código, neste projeto foi utilizado o linter ESLin
 
 `npm run lint`
 
-Aqui encontram-se os requisitos do projeto. Em cada requisito você encontrara uma imagem de um protótipo de como sua aplicação deve ficar. Estilo da página não será avaliado.
-
 ---
 ## Telas da aplicação
 

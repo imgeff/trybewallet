@@ -95,7 +95,7 @@ No formulário de adição de Despesa, há 5 campos em que a pessoa usuária pod
   ![image](tabela.png)
 #### Botão Excluir
 
-    ![image](btnExcluir.png)
+  ![image](btnExcluir.png)
 
   * O botão é o último item da linha da tabela representado por uma lixeira da cor vermelha`.
 
@@ -103,7 +103,7 @@ No formulário de adição de Despesa, há 5 campos em que a pessoa usuária pod
 
 #### Botão Editar
 
-    ![image](btnEditar.png)
+  ![image](btnEditar.png)
 
   * O botão fica ao lado do botão de excluir e é representado pelo ícone azul`
 

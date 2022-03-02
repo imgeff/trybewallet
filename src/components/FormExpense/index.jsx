@@ -82,7 +82,7 @@ class FormExpense extends React.Component {
             value={ currency }
             onChange={ this.handleChangeWallet }
           >
-            <option>BRL</option>
+            {/* <option>BRL</option> */}
             {
               listOfCurrencyCode.map((code) => (
                 <option data-testid={ code } key={ code }>{code}</option>

@@ -1,13 +1,5 @@
 
 # Boas vindas ao repositório do projeto Trybe Wallet!
-
----
-
-
-# Sumário
-
----
-
 # Habilidades
 Neste projeto, foram exercitadas as seguintes habilidades:
 
@@ -24,9 +16,6 @@ Neste projeto, foram exercitadas as seguintes habilidades:
   * Criar actions assíncronas na sua aplicação React que faz uso de Redux.
 
 ---
-
-# Entregáveis
-
 ## O que deverá ser desenvolvido
 
 Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor de moedas, ao utilizar essa aplicação um usuário poderá:
@@ -36,9 +25,9 @@ Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor 
 
 ## Desenvolvimento
 
-Você deve desenvolver uma aplicação em React que use Redux como ferramenta de manipulação de estado.
+Foi desenvolvido uma aplicação em React que use Redux como ferramenta de manipulação de estado.
 
-Através dessa aplicação, será possível realizar as operações básicas de criação e manipulação de um estado de redux.
+Através dessa aplicação, foi possível realizar as operações básicas de criação e manipulação de um estado de redux.
 ## Para contribuir
 
 1. Clone o repositório
@@ -70,61 +59,19 @@ Para garantir a qualidade do código, neste projeto foi utilizado o linter ESLin
 Aqui encontram-se os requisitos do projeto. Em cada requisito você encontrara uma imagem de um protótipo de como sua aplicação deve ficar. Estilo da página não será avaliado.
 
 ---
+## Telas da aplicação
 
-## Configurando o Redux DevTools
-Pra usarmos o Redux DevTools com o Redux-Thunk, vamos utilizar uma biblioteca chamada `composeWithDevTools`, ela já está no package.json, a única coisa que você vai precisar fazer é configurar a sua store, por exemplo:
+### Página de Home
 
-```
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
-import reducer from '../reducers';
+A página inicial da aplicação, que oferece dois caminhos ao usuário, fazer login caso já possua conta, ou criar conta para entrar na carteira.
 
-const store = createStore(
-  reducer,
-  composeWithDevTools(
-    applyMiddleware(thunk),
-  ),
-);
+  ![image](home.png)
 
-export default store;
-```
+### Página de Registro
 
----
+Essa página possui campos para registro de email, senha e nome do usuário no localStorage, onde serão utilizados esses dados para fazer login e entrar na carteira.
 
-## Documentação da API de Cotações de Moedas
-
-A página _web_ consome os dados da API do _awesomeapi API de Cotações_ para realizar a busca de câmbio de moedas. no seguinte _endpoint_:
-
-- https://economia.awesomeapi.com.br/json/all
-
-O retorno desse endpoint será algo no formato:
-```
-{
-   {
-     "USD": {
-       "code":"USD",
-       "codein":"BRL",
-       "name":"Dólar Comercial",
-       "high":"5.6689",
-       "low":"5.6071",
-       "varBid":"-0.0166",
-       "pctChange":"-0.29",
-       "bid":"5.6173",
-       "ask":"5.6183",
-       "timestamp":"1601476370",
-       "create_date":"2020-09-30 11:32:53"
-       },
-      ...
-   }
-}
-```
-
-Se você quiser aprender mais informações sobre a API, veja a [documentação](https://docs.awesomeapi.com.br/api-de-moedas).
-
----
-## Lista de requisitos
-
+  ![image](register.png)
 ### Página de Login
 
 A página possibilita a pessoa usuária fazer login, com email e senha que foram salvos no localStorage através da página /register.
@@ -135,25 +82,28 @@ A página possibilita a pessoa usuária fazer login, com email e senha que foram
 
 Na página /wallet é onde se pode gerenciar a carteira de gastos em diversas moedas, trazendo a despesa total com base na moeda real que é representado pelo código 'BRL'.
 
-  ![image](carteira.gif)
+  ![image](carteira.png)
 ### Formulário de adição de Despesa
 
 No formulário de adição de Despesa, há 5 campos em que a pessoa usuária pode indicar um valor, descrição, moeda, forma de pagamento, tag e um botão para adicionar a despesa.
+
+  ![image](formulario.png)
 ### Tabela de Gastos
 
   * A tabela possui 9 colunas com as seguintes opções. Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido e Moeda de conversão e Editar/Excluir.
 
-#### 8. Botão Excluir
+  ![image](tabela.png)
+#### Botão Excluir
 
-    ![image](btnExcluir.gif)
+    ![image](btnExcluir.png)
 
   * O botão é o último item da linha da tabela representado por uma lixeira da cor vermelha`.
 
   * Ao ser clicado, o botão deleta a linha da tabela e recalcula o valor da despesa total.
 
-#### 9. Botão Editar
+#### Botão Editar
 
-    ![image](btnEditar.gif)
+    ![image](btnEditar.png)
 
   * O botão fica ao lado do botão de excluir e é representado pelo ícone azul`
 

@@ -162,7 +162,9 @@ class Login extends React.Component {
           {
             this.inputValidation()
               ? <Sbutton type="submit">Entrar</Sbutton> : (
-                <Sbutton type="submit" disabled> Entrar</Sbutton>)
+                <Sbutton type="submit" disabled style={ { cursor: 'not-allowed' } }>
+                  Entrar
+                </Sbutton>)
           }
           { redirect && <Redirect to="/carteira" /> }
         </Sform>

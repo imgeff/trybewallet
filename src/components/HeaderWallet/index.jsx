@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { SheaderValue, SpValue } from '../../styles/Header';
 import Logo from '../../images/wallet.png';
 import imgWallet from '../../images/walletImg.svg';
-import IconLogout from '../../images/logout.png';
+import IconLogout from '../../images/log-out.png';
 
 class HeaderWallet extends React.Component {
   constructor() {

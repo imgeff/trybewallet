@@ -51,6 +51,7 @@ class Register extends React.Component {
       <Sbutton
         type="button"
         data-testid="edit-button-save"
+        style={ { cursor: 'not-allowed' } }
         disabled
       >
         Salvar

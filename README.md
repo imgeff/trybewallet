@@ -28,7 +28,7 @@ Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor 
 Foi desenvolvido uma aplicação em React que use Redux como ferramenta de manipulação de estado.
 
 Através dessa aplicação, foi possível realizar as operações básicas de criação e manipulação de um estado de redux.
-## Para contribuir
+## Para instalar localmente
 
 1. Clone o repositório
   * `git clone git@github.com:imgeff/trybewallet.git`

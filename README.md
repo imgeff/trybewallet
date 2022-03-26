@@ -1,63 +1,45 @@
 
-# Boas vindas ao repositório do projeto Trybe Wallet!
-# Habilidades
-Neste projeto, foram exercitadas as seguintes habilidades:
+# TrybeWallet
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
-  * Criar um store Redux em aplicações React
 
-  * Criar reducers no Redux em aplicações React
+Esta é uma carteira online para controle de gastos com conversão de moedas.
 
-  * Criar actions no Redux em aplicações React
+Ao utilizar essa aplicação um usuário poderá:
 
-  * Criar dispatchers no Redux em aplicações React
+- Adicionar, remover e editar um gasto;
+- Visualizar uma tabela com seus gastos;
+- Visualizar o total de gastos convertidos para uma moeda de escolha;
 
-  * Conectar Redux aos componentes React
 
-  * Criar actions assíncronas na sua aplicação React que faz uso de Redux.
+## Documentação da API de Cotações de Moedas
 
----
-## O que deverá ser desenvolvido
+A aplicação consome os dados da API do awesomeapi API de Cotações para realizar a busca de câmbio de moedas. 
 
-Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor de moedas, ao utilizar essa aplicação um usuário poderá:
-  - Adicionar, remover e editar um gasto;
-  - Visualizar uma tabelas com seus gastos;
-  - Visualizar o total de gastos convertidos para uma moeda de escolha;
+**O endpoint utilizado foi:**
 
-## Desenvolvimento
+ - https://economia.awesomeapi.com.br/json/all
 
-Foi desenvolvido uma aplicação em React que use Redux como ferramenta de manipulação de estado.
+**O retorno é algo semelhante á isso:**
 
-Através dessa aplicação, foi possível realizar as operações básicas de criação e manipulação de um estado de redux.
-## Para instalar localmente
+```
+{
+  user: {
+    email: '',
+  },
+  wallet: {
+    currencies: [],
+    expenses: []
+  }
+}
+```
 
-1. Clone o repositório
-  * `git clone git@github.com:imgeff/trybewallet.git`
-  * Entre na pasta do repositório que você acabou de clonar:
-    * `cd trybewallet`
-
-2. Instale as dependências e inicialize o projeto
-  * Instale as dependências:
-    * `npm install`
-  * Inicialize o projeto:
-    * `npm start` (uma nova página deve abrir no seu navegador com um texto simples)
-
-3. Crie uma branch a partir da branch `master`
-
-  * Verifique que você está na branch `master`
-    * Exemplo: `git branch`
-  * Se não estiver, mude para a branch `master`
-    * Exemplo: `git checkout master`
-  * Agora, crie uma branch onde você vai guardar os commits do seu projeto
----
-
-## Linter
-
-Para garantir a qualidade do código, neste projeto foi utilizado o linter ESLint. Assim o código foi alinhado com as boas práticas de desenvolvimento, sendo mais legível e de fácil manutenção! Para rodar o *linter* localmente no projeto, execute o comando abaixo: 
-
-`npm run lint`
+Se você quiser aprender mais informações sobre a API, veja a [documentação](https://docs.awesomeapi.com.br/api-de-moedas).
 
 ---
-## Telas da aplicação
+
+## Demonstração
+
 
 ### Página de Home
 
@@ -106,3 +88,78 @@ No formulário de adição de Despesa, há 5 campos em que a pessoa usuária pod
   * O botão fica ao lado do botão de excluir e é representado pelo ícone azul`
 
   * Ao ser clicado, o botão habilita um formulário para editar a linha da tabela. Ao clicar em "Editar despesa" a linha da tabela é atualizada com as novas informações preenchidas no formulário.
+
+
+
+## Deploy
+
+- **Vercel:** https://trybewallet-imgeff.vercel.app/
+
+## Para instalar localmente
+
+1. Clone o repositório
+  * `git clone git@github.com:imgeff/trybewallet.git`
+  * Entre na pasta do repositório que você acabou de clonar:
+    * `cd trybewallet`
+
+2. Instale as dependências e inicialize o projeto
+  * Instale as dependências:
+    * `npm install`
+  * Inicialize o projeto:
+    * `npm start` (uma nova página deve abrir no seu navegador com um texto simples)
+
+3. Crie uma branch a partir da branch `master`
+
+  * Verifique que você está na branch `master`
+    * Exemplo: `git branch`
+  * Se não estiver, mude para a branch `master`
+    * Exemplo: `git checkout master`
+  * Agora, crie uma branch onde você vai guardar os commits do seu projeto
+---
+
+## Linter
+
+Para garantir a qualidade do código, neste projeto foi utilizado o linter ESLint. Assim o código foi alinhado com as boas práticas de desenvolvimento, sendo mais legível e de fácil manutenção! Para rodar o *linter* localmente no projeto, execute o comando abaixo: 
+
+`npm run lint`
+
+---
+
+    
+## Aprendizados
+
+Para este projeto o maior desafio foi entender o fluxo de trabalho do Redux, acabei assistindo as aulas do course da Trybe mais de uma vez e praticando muito através dos exercícios pra pegar o jeito. O projeto então foi feito com o objetivo de consolidar as seguintes habilidades:   
+
+  * Criar um store Redux em aplicações React
+
+  * Criar reducers no Redux em aplicações React
+
+  * Criar actions no Redux em aplicações React
+
+  * Criar dispatchers no Redux em aplicações React
+
+  * Conectar Redux aos componentes React
+
+  * Criar actions assíncronas na sua aplicação React que faz uso de Redux.
+
+## Melhorias
+
+- Criação da página Home
+- Criação da página de Registro
+- Criação de logo
+- Feedback de preenchimento no formulário de login
+- Validação de login utilizando localStorage
+- Mensagem de boas vindas
+- Adição do Real brasileiro na lista de moedas
+- Novo Favicon
+- Botão de logout
+
+
+## Stack utilizada
+
+**Front-end:** HTML, CSS, JavaScript, React, Redux
+
+## Feedback
+
+Se você tiver algum feedback, por favor mande uma mensagem em  https://www.linkedin.com/in/imgeff/
+
